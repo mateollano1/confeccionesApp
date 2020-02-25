@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "confeccionesApp"
+  "defaultProject": "confeccionesApp",
+  "cli": {
+    "analytics": false
+  }
 }
