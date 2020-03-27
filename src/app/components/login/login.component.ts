@@ -3,6 +3,7 @@ import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Router} from '@angular/router';
 import { from } from 'rxjs';
+import { log } from 'util';
 
 
 @Component({
@@ -19,17 +20,25 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.log = new FormGroup({
       'username': new FormControl('',Validators.required),
-      'password': new FormControl('',Validators.required)
+      'password': new FormControl('',Validators.required),
+      'grant_type': new FormControl('password'),
     });
   }
 
   login(){
     if(this.log.valid){
-      this.loginService.login(this.log.value)
+      console.log(this.log.value);
+      
+      this.loginService.login(this.log.value).subscribe(data =>{
+        console.log("termino");
+        
+        console.log(data);
+        
+      })
     //llama servicio
-    this.route.navigateByUrl('/dashboard')
+    // this.route.navigateByUrl('/dashboard')
     }
-    console.log(this.log);
+    // console.log(this.log);
 
   }
   
