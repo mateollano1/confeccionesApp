@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
+import { Router} from '@angular/router';
+import { from } from 'rxjs';
 
 
 @Component({
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   public log: FormGroup
   
-  constructor(private loginService:LoginService) { }
+  constructor(private loginService:LoginService, private route:Router) { }
 
   ngOnInit(): void {
     this.log = new FormGroup({
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
     if(this.log.valid){
       this.loginService.login(this.log.value)
     //llama servicio
+    this.route.navigateByUrl('/dashboard')
     }
     console.log(this.log);
 

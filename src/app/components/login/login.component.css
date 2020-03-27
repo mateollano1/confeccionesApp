@@ -11,3 +11,13 @@
     justify-content: center;
     display: flex;
 }
+.login-button {
+    height: 40px; 
+    width: 150px;
+    font-size: 110%;
+    border-radius: 20px;
+} 
+.image-logo{
+    justify-content: center;
+    display: flex; 
+}

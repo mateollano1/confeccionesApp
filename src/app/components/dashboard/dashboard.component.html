@@ -1,0 +1,10 @@
+<mat-drawer-container  (window:resize)="onResize()" class="example-container">
+    <mat-drawer  style="width: 15em;" mode="{{mode}}" #drawer opened>Drawer content</mat-drawer>
+    <mat-drawer-content style="background-color:cornflowerblue; width:100%;">
+    <div class="row" >
+        <button class="btn btn-primary " style="margin-left: 15px;" (click)="drawer.toggle()"><span class="material-icons">
+            menu
+            </span></button>
+    </div>
+    </mat-drawer-content>
+</mat-drawer-container>
