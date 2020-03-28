@@ -1,6 +1,11 @@
 .example-container {
     width: 100%;
     height: 100%;
+}
 
-   
-  }
+.imgRedonda {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    /* border: 10px solid #666; */
+}

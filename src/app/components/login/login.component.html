@@ -1,11 +1,11 @@
 <div class="login">
     <!-- <img src="../assets/imgs/sewing-machine.png" style="margin-left: 25%;" width="40%"> -->
-    <mat-card  class="mat-elevation-z5" style="width: 30em;height: 35em;  background-image: url('../assets/imgs/fondo.jpg')">
-         <mat-card-title class="image-logo" style="margin-top: 30px;" > <img src="../assets/imgs/maquina.png" width="60%"> 
-            </mat-card-title>   
+    <mat-card class="mat-elevation-z5" style="width: 30em;height: 35em;  background-image: url('../assets/imgs/fondo.jpg')">
+        <mat-card-title class="image-logo" style="margin-top: 30px;"> <img src="../assets/imgs/maquina.png" width="60%">
+        </mat-card-title>
         <mat-card-title class="centerCard" style="margin-top: 10px;">Confecciones App</mat-card-title>
         <mat-card-content class="centerCard">
-            <form [formGroup]="log"> 
+            <form [formGroup]="log">
                 <p>
                     <mat-form-field style=" font-size: 15px; margin-top: 20px;">
                         <input matInput placeholder="Usuario" formControlName="username">
@@ -16,6 +16,9 @@
                         <input type="password" matInput placeholder="Password" formControlName="password">
                     </mat-form-field>
                 </p>
+                <div class="">
+
+                </div>
                 <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
                     <button mat-raised-button color="primary" class="login-button" (click)="login()">Ingresar <i class="material-icons">
                         arrow_right

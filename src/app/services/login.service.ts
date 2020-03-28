@@ -16,16 +16,10 @@ export class LoginService {
   }
 
   login(usuario: User) {
-    console.log(this.headers);
-
     let body = '';
     for (let key in usuario){
       body += `${key}=${usuario[key]}&`
     }
-
-    // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(usuario.username + ':' + usuario.password) });
-    //  console.log(headers);
     return this.http.post(url + "/oauth/token", body, { headers: this.headers })
-  }
-
+  } 
 }
