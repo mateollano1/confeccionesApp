@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl,Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { log } from 'util';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -15,40 +15,41 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class LoginComponent implements OnInit {
   durationInSeconds = 5;
   public log: FormGroup
-  
-  constructor(private loginService:LoginService,
-              private route:Router,
-              private _snackBar: MatSnackBar) { }
+
+  constructor(private loginService: LoginService,
+    private route: Router,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     localStorage.removeItem('access_token');
     this.log = new FormGroup({
-      'username': new FormControl('',Validators.required),
-      'password': new FormControl('',Validators.required),
+      'username': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.required),
       'grant_type': new FormControl('password'),
     });
   }
 
-  login(){
-    if(this.log.valid){
+  login() {
+    if (this.log.valid) {
       console.log(this.log.value);
-      
-      this.loginService.login(this.log.value).subscribe(data =>{
+
+      this.loginService.login(this.log.value).subscribe(data => {
         console.log(data);
         localStorage.setItem('access_token', data['access_token']);
-      }, err =>{
+        this.route.navigateByUrl('/dashboard')
+
+      }, err => {
         if (err.status == 400 || err.status == 401) {
           console.log("Usuario o contrasela incorrectos");
           this.penSnackBar()
-        }else{
+        } else {
           console.log("error en el servidor");
-          
+
         }
         console.log(err.status);
-        
+
       })
-    //llama servicio
-    this.route.navigateByUrl('/dashboard')
+      //llama servicio
     }
     // console.log(this.log);
 
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
       duration: this.durationInSeconds * 1000,
     });
   }
-  
+
 
 }
 @Component({
@@ -72,4 +73,4 @@ export class LoginComponent implements OnInit {
     }
   `],
 })
-export class PizzaPartyComponent {}
+export class PizzaPartyComponent { }
