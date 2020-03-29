@@ -8,12 +8,13 @@
             <form [formGroup]="log">
                 <p>
                     <mat-form-field style=" font-size: 15px; margin-top: 20px;">
-                        <input matInput placeholder="Usuario" formControlName="username">
+                        <input required matInput placeholder="Usuario" formControlName="username">
                     </mat-form-field>
                 </p>
                 <p>
                     <mat-form-field style=" font-size: 15px">
-                        <input type="password" matInput placeholder="Password" formControlName="password">
+                        <input   required type="password" matInput placeholder="Password" formControlName="password">
+                        
                     </mat-form-field>
                 </p>
                 <div class="">

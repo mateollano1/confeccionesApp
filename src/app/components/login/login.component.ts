@@ -50,6 +50,9 @@ export class LoginComponent implements OnInit {
 
       })
       //llama servicio
+    }else{
+      this.penSnackBarValidInputs()
+      
     }
     // console.log(this.log);
 
@@ -60,6 +63,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  penSnackBarValidInputs() {
+    this._snackBar.openFromComponent(ValidInputsComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
 
 }
 @Component({
@@ -74,3 +82,16 @@ export class LoginComponent implements OnInit {
   `],
 })
 export class PizzaPartyComponent { }
+
+@Component({
+  selector: 'snack-bar-component-example-snack',
+  template: `<span class="ValidInputs">
+  Ingrese usuario y contraseña
+</span>`,
+  styles: [`
+    .ValidInputs {
+      color: white;
+    }
+  `],
+})
+export class ValidInputsComponent { }
