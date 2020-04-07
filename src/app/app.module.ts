@@ -18,12 +18,28 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ShowInventoryComponent } from './components/dashboard/inventory/show-inventory/show-inventory.component';
+import { CreateMachineComponent } from './components/dashboard/machine/create-machine/create-machine.component';
+import { ShowMachineComponent } from './components/dashboard/machine/show-machine/show-machine.component';
+import { WatchUsersComponent } from './components/dashboard/users/watch-users/watch-users.component';
+import { CreateUserComponent } from './components/dashboard/users/create-user/create-user.component';
+import { WatchUserComponent } from './components/dashboard/users/user/watch-user/watch-user.component';
+import { WatchProvidersComponent } from './components/dashboard/providers/watch-providers/watch-providers.component';
+import { CreateProviderComponent } from './components/dashboard/providers/create-provider/create-provider.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    ShowInventoryComponent,
+    CreateMachineComponent,
+    ShowMachineComponent,
+    WatchUsersComponent,
+    CreateUserComponent,
+    WatchUserComponent,
+    WatchProvidersComponent,
+    CreateProviderComponent,
   ],
   imports: [
     BrowserModule,

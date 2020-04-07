@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  durationInSeconds = 5;
+  durationInSeconds = 3;
   public log: FormGroup
 
   constructor(private loginService: LoginService,
@@ -31,16 +31,16 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.log.valid) {
-      console.log(this.log.value);
+      // console.log(this.log.value);
 
       this.loginService.login(this.log.value).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         localStorage.setItem('access_token', data['access_token']);
         this.route.navigateByUrl('/dashboard')
 
       }, err => {
         if (err.status == 400 || err.status == 401) {
-          console.log("Usuario o contrasela incorrectos");
+          // console.log("Usuario o contrasela incorrectos");
           this.penSnackBar()
         } else {
           console.log("error en el servidor");
