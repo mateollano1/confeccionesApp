@@ -2,20 +2,41 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ShowInventoryComponent } from './components/dashboard/inventory/show-inventory/show-inventory.component';
+import { ShowMachineComponent } from './components/dashboard/machine/show-machine/show-machine.component';
+import { CreateMachineComponent } from './components/dashboard/machine/create-machine/create-machine.component';
+import { WatchProvidersComponent } from './components/dashboard/providers/watch-providers/watch-providers.component';
+import { CreateProviderComponent } from './components/dashboard/providers/create-provider/create-provider.component';
+import { WatchUsersComponent } from './components/dashboard/users/watch-users/watch-users.component';
+import { CreateUserComponent } from './components/dashboard/users/create-user/create-user.component';
 
 
 const routes: Routes = [
 
-{path:'login', component:LoginComponent},
-{path:'dashboard', component:DashboardComponent},
-{path:'**', redirectTo: '/login', pathMatch:'full'},
-{path:'**', component:LoginComponent}
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: 'inventario', component: ShowInventoryComponent },
+      { path: 'maquinas', component: ShowMachineComponent },
+      { path: 'crear/maquina', component: CreateMachineComponent },
+      { path: 'proveedores', component: WatchProvidersComponent },
+      { path: 'crear/proveedor', component: CreateProviderComponent },
+      { path: 'trabajadores', component: WatchUsersComponent },
+      { path: 'crear/trabajador', component: CreateUserComponent },
+
+
+    ]
+  },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', component: LoginComponent }
 
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

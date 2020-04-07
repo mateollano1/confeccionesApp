@@ -26,7 +26,9 @@ import { CreateUserComponent } from './components/dashboard/users/create-user/cr
 import { WatchUserComponent } from './components/dashboard/users/user/watch-user/watch-user.component';
 import { WatchProvidersComponent } from './components/dashboard/providers/watch-providers/watch-providers.component';
 import { CreateProviderComponent } from './components/dashboard/providers/create-provider/create-provider.component';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,10 @@ import { CreateProviderComponent } from './components/dashboard/providers/create
     ReactiveFormsModule,
     HttpClientModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

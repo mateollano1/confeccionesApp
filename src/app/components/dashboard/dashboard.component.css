@@ -9,3 +9,22 @@
     border-radius: 150px;
     /* border: 10px solid #666; */
 }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover,
+a:active {
+    color: lightgray;
+}
+
+.arrow-left {
+    text-align: right;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid #f4f3ef;
+}

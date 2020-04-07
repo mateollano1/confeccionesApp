@@ -10,6 +10,8 @@ export class ShowInventoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("saludos desde inventario");
+    
   }
 
 }
