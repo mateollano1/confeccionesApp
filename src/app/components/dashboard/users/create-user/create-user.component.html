@@ -1,1 +1,55 @@
-<p>create-user works!</p>
+<div class="m-4">
+    <div class="card p-4">
+
+        <h5>Registrar Empleado</h5>
+        <div class="form">
+            <form [formGroup]="usuario">
+                <div class="row ">
+                    <div class="col-md-4 mt-4">
+
+                        <input class="form-control " type="text" formControlName="nombre" placeholder="Nombre">
+                    </div>
+                    <div class="col-md-4 mt-4">
+
+                        <input class="form-control" type="text" formControlName="apellido" placeholder="Apellido">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4 mt-4">
+
+                        <input class="form-control" formControlName="usuario" type="text" placeholder="usuario">
+                    </div>
+                    <div class="col-md-4 mt-4">
+
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="idRol">
+                            <option disabled selected value> -- Seleccione -- </option>
+                            <option value="{{roles[i]['id']}}" *ngFor="let item of roles; let i = index">{{roles[i]['descripcion']}}</option>
+                          
+                        </select>
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <div class="col-md-4 mt-4">
+
+                        <input class="form-control" type="text" formControlName="contrasena" placeholder="contraseña">
+                    </div>
+                    <div class="col-md-4 mt-4">
+
+                        <input class="form-control" type="text" placeholder="Repetir contraseña">
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <div class="col-md-4 mt-4">
+
+                        <input class="form-control" type="text" placeholder="Tipo de contrato">
+                    </div>
+                </div>
+            </form>
+            <div>
+                <button (click)="save()" class="btn btn-primary mt-4"> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

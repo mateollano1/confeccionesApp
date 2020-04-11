@@ -3,6 +3,57 @@
     height: 100%;
 }
 
+.disabled {
+    overflow-x: hidden;
+    /* overflow-y: scroll; */
+}
+
+.logout {
+    text-align: right;
+    margin-left: 3em;
+}
+
+.navbar {
+    border-left: #f4f3ef;
+    border-right: #f4f3ef;
+    border-top: #f4f3ef;
+    border-bottom: #dddddd;
+    border-width: thin;
+    border-style: solid;
+}
+
+.primary {
+    color: #66615b;
+}
+
+.card.perfil {
+    width: 14, 8em;
+    height: 15em;
+    text-align: center;
+}
+
+.perfilName {
+    margin-top: 27px;
+    color: #66615b;
+    font-family: 'Montserrat';
+}
+
+.montserrat {
+    font-family: 'Montserrat';
+}
+
+.sidenavButton {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    cursor: pointer;
+    font-family: 'Montserrat';
+}
+
+.sidenavIcon {
+    font-size: 32px;
+    margin-right: 10px;
+}
+
 .imgRedonda {
     width: 150px;
     height: 150px;

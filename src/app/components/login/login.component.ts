@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.log.value).subscribe(data => {
         // console.log(data);
         localStorage.setItem('access_token', data['access_token']);
-        this.route.navigateByUrl('/dashboard')
+        this.route.navigateByUrl('/dashboard/inventario')
 
       }, err => {
         if (err.status == 400 || err.status == 401) {
