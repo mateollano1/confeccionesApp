@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: 'crear/proveedor', component: CreateProviderComponent },
       { path: 'trabajadores', component: WatchUsersComponent },
       { path: 'crear/trabajador', component: CreateUserComponent },
+      { path: 'editar/trabajador/:id', component: CreateUserComponent },
 
 
     ]

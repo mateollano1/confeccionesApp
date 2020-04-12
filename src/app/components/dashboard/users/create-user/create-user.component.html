@@ -1,49 +1,79 @@
 <div class="m-4">
     <div class="card p-4">
 
-        <h5>Registrar Empleado</h5>
+        <h5>{{header}}</h5>
         <div class="form">
             <form [formGroup]="usuario">
                 <div class="row ">
-                    <div class="col-md-4 mt-4">
-
+                    <div class="col-md-5 mt-4">
+                        <label>Nombre:</label>
                         <input class="form-control " type="text" formControlName="nombre" placeholder="Nombre">
                     </div>
-                    <div class="col-md-4 mt-4">
+                    <div class="col-md-5 mt-4">
+                        <label>Apellido:</label>
 
                         <input class="form-control" type="text" formControlName="apellido" placeholder="Apellido">
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-md-4 mt-4">
+                    <div class="col-md-5 mt-4">
+                        <label>Usuario:</label>
 
                         <input class="form-control" formControlName="usuario" type="text" placeholder="usuario">
                     </div>
-                    <div class="col-md-4 mt-4">
+                    <div class="col-md-5 mt-4">
+                        <label>Correo:</label>
 
+                        <input class="form-control" formControlName="correo" autocomplete="username email" type="text" placeholder="usuario">
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <div class="col-md-5 mt-4">
+                        <label>Tipo de usuario:</label>
                         <select class="form-control" id="exampleFormControlSelect1" formControlName="idRol">
                             <option disabled selected value> -- Seleccione -- </option>
                             <option value="{{roles[i]['id']}}" *ngFor="let item of roles; let i = index">{{roles[i]['descripcion']}}</option>
                           
                         </select>
                     </div>
+                    <div class="col-md-5 mt-4">
+                        <label>Contraseña:</label>
+
+                        <input class="form-control" type="password" autocomplete="new-password" formControlName="contrasenia" placeholder="contraseña">
+                    </div>
+
 
                 </div>
                 <div class="row ">
-                    <div class="col-md-4 mt-4">
-
-                        <input class="form-control" type="text" formControlName="contrasena" placeholder="contraseña">
+                    <div class="col-md-5 mt-4">
+                        <label>Repetir contraseña:</label>
+                        <input class="form-control" type="password" autocomplete="new-password" formControlName="contraseniaR" placeholder="Repetir contraseña">
                     </div>
-                    <div class="col-md-4 mt-4">
-
-                        <input class="form-control" type="text" placeholder="Repetir contraseña">
+                    <div class="col-md-5 mt-4">
+                        <label>Tipo de contrato:</label>
+                        <select class="form-control" formControlName="idContrato">
+                            <option disabled selected value> -- Seleccione -- </option>
+                            <option value="{{tipo[i]['id']}}" *ngFor="let item of tipo; let i = index">{{tipo[i]['nombre']}}</option>
+                          
+                        </select>
                     </div>
 
                 </div>
                 <div class="row ">
-                    <div class="col-md-4 mt-4">
-
-                        <input class="form-control" type="text" placeholder="Tipo de contrato">
+                    <div class="col-md-5 mt-4">
+                        <label>Punto de venta:</label>
+                        <select class="form-control" formControlName="idPuntoVenta">
+                            <option disabled selected value> -- Seleccione -- </option>
+                            <option value="{{puntos[i]['id']}}" *ngFor="let item of puntos; let i = index">{{puntos[i]['nombre']}}</option>
+                          
+                        </select>
+                    </div>
+                    <div class="col-md-5 mt-4">
+                        <label for="example-date-input" class=" col-form-label">Fecha de Finalización</label>
+                        <!-- <div class="col-10"> -->
+                        <input class="form-control" type="date" value="2011-08-19">
+                        <!-- </div> -->
                     </div>
                 </div>
             </form>

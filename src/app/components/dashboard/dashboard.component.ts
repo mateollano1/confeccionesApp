@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.onResize();
+    this.clearColor()
   }
   changeColor(index: number) {
     this.clearColor()

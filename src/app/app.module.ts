@@ -29,6 +29,8 @@ import { CreateProviderComponent } from './components/dashboard/providers/create
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +60,8 @@ import {MatListModule} from '@angular/material/list';
     MatSnackBarModule,
     MatMenuModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

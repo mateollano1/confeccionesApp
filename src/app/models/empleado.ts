@@ -2,9 +2,10 @@ export class empleado{
 
     id:number;
     nombre :string;
+    correo:string
     apellido:string;
     usuario:string;
-    contrasena:string;
+    contrasenia:string;
     foto:string;
     fechaInicio:Date;
     fechaFinalizacion: Date;
