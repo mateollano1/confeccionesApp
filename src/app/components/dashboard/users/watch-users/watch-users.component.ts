@@ -9,6 +9,7 @@ import { empleado } from '../../../../models/empleado';
 })
 export class WatchUsersComponent implements OnInit {
   usuario: empleado[]
+  loading: boolean = true
   constructor(private usersService: UsersService) {
 
   }
@@ -20,10 +21,11 @@ export class WatchUsersComponent implements OnInit {
     this.usersService.getUsuarios().subscribe(data => {
       console.log(data['content']);
       this.usuario = data['content']
+      this.loading = false
 
     })
   }
-  delete(id: number) {
+  delete(id: number, index: number) {
     console.log(id);
 
     Swal.fire({
@@ -37,6 +39,7 @@ export class WatchUsersComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.usersService.deleteUSer(id).subscribe(data => {
+          this.usuario.splice(index,1)
           Swal.fire(
             'Deleted!',
             'Your file has been deleted.',

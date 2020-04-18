@@ -5,7 +5,10 @@ import { Rol } from '../../../../models/rol';
 import { Form, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PuntosVenta } from '../../../../models/puntoVenta';
 import { TipoContrato } from '../../../../models/tipoContrato';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { empleado } from '../../../../models/empleado';
+
 
 @Component({
   selector: 'app-create-user',
@@ -14,76 +17,169 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateUserComponent implements OnInit {
   usuario: FormGroup
+  empleado: empleado
+  rol: FormGroup
   roles: Rol[]
   puntos: PuntosVenta[]
   tipo: TipoContrato[]
   id: string
   header: string = ""
+  idRol: string = ""
+  idContrato: string = ""
+  idPuntoVenta: string = ""
+  loading: boolean = true
+  userMessage: string = ""
   constructor(private usersService: UsersService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
     this.id = this.route.snapshot.paramMap.get("id")
-    this.createForm()
-    this.verifyAction(this.id)
-    
+
   }
   ngOnInit(): void {
     this.getRoles()
-    this.getPuntosVenta()
-    this.getTipoContrato()
+    this.createForm()
+
+
   }
-  verifyAction(id: string){
+  verifyAction(id: string) {
+    this.loading = false
+
     if (id) {
-      console.log("vamos a edtar");
       this.header = "Editar Empleado"
-    }else{
-      console.log("vamos a crear");
+      this.getUser()
+
+    } else {
       this.header = "Registrar Empleado"
+      this.createForm()
+
     }
   }
-  createForm(){
+  getUser() {
+    this.usersService.getUsuario(this.id).subscribe(data => {
+      console.log(data);
+      this.createEditForm()
+
+    }, err => {
+      this.empleado = err.error
+      console.log(this.empleado);
+      this.createEditForm()
+
+
+    })
+  }
+  createEditForm() {
+    this.usuario = new FormGroup({
+      'nombre': new FormControl(this.empleado['nombre'], Validators.required),
+      'apellido': new FormControl(this.empleado['apellido'], Validators.required),
+      'usuario': new FormControl(this.empleado['usuario'], Validators.required),
+      'contrasenia': new FormControl(this.empleado['contrasenia']),
+      'correo': new FormControl(this.empleado['correo']),
+      'fechaFin': new FormControl(this.empleado['fechaFin']),
+      'contraseniaR': new FormControl(this.empleado['contrasenia']),
+      'idRol': new FormControl(this.findPosIdRol(this.empleado['rol']['id'])),
+      'idContrato': new FormControl(this.findPosIdContrato(this.empleado['contrato']['id'])),
+      'idPuntoVenta': new FormControl(this.findPosIdPuntoVenta(this.empleado['puntoVenta']['id'])),
+    })
+  }
+  createForm() {
     this.usuario = new FormGroup({
       'nombre': new FormControl('', Validators.required),
       'apellido': new FormControl('', Validators.required),
       'usuario': new FormControl('', Validators.required),
-      'contrasenia': new FormControl('', Validators.required),
+      'contrasenia': new FormControl(''),
       'correo': new FormControl(''),
-      'fechaInicio': new FormControl(''),
-      'fechaFinalizacion': new FormControl(''),
+      'fechaFin': new FormControl(''),
+      'contraseniaR': new FormControl(''),
       'idRol': new FormControl(''),
       'idContrato': new FormControl(''),
       'idPuntoVenta': new FormControl(''),
-      'contraseniaR': new FormControl(''),
+
     })
   }
-  
+  findPosIdRol(id: number) {
+    for (let index = 0; index < this.roles.length; index++) {
+      const element = this.roles[index]['id'];
+      if (element == id) {
+        return index
+      }
+    }
+    return 0
+  }
+  findPosIdContrato(id: number) {
+
+    for (let index = 0; index < this.tipo.length; index++) {
+      const element = this.tipo[index]['id'];
+      if (element == id) {
+        return index
+      }
+    }
+    return 0
+  }
+  findPosIdPuntoVenta(id: number) {
+
+    for (let index = 0; index < this.puntos.length; index++) {
+      const element = this.puntos[index]['id'];
+      if (element == id) {
+        return index
+      }
+    }
+    return 0
+  }
   getRoles() {
     this.usersService.getRoles().subscribe((data) => {
       this.roles = data
-      console.log(this.roles);
+      this.getPuntosVenta()
+
+
     })
+  }
+  saveRol(event: any) {
+    this.idRol = event.target.value
+  }
+  saveContrato(event: any) {
+    this.idContrato = event.target.value
+  }
+  savePuntoVenta(event: any) {
+    this.idPuntoVenta = event.target.value
   }
   getPuntosVenta() {
     this.usersService.getPuntosVenta().subscribe(data => {
       this.puntos = data['content']
-      console.log(this.puntos);
+      this.getTipoContrato()
 
     })
   }
   getTipoContrato() {
     this.usersService.getTipoContrato().subscribe(data => {
       this.tipo = data
-      console.log(data);
+      this.verifyAction(this.id)
 
     })
   }
   save() {
     console.log(this.usuario.value);
-    if (this.usuario.valid) {
-      if (this.usuario.value['contrasenia'] == this.usuario.value['contraseniaR']) {
-        this.usersService.crearUsuario(this.usuario.value, this.usuario.value['idRol'], this.usuario.value['idContrato'], this.usuario.value['idPuntoVenta']).subscribe(data => {
-          console.log(data);
 
-        })
+    if (this.usuario.valid /* && this.idRol !== "" && this.idContrato !== "" && this.idPuntoVenta !== "" */) {
+      this.usuario.value['rol'] = this.roles[this.idRol]
+      this.usuario.value['contrato'] = this.tipo[this.idContrato]
+      this.usuario.value['puntoVenta'] = this.tipo[this.idPuntoVenta]
+      console.log(this.usuario.value);
+
+      if (this.usuario.value['contrasenia'] == this.usuario.value['contraseniaR']) {
+        if (this.id) {
+          this.usersService.editarUsuario(this.usuario.value, this.id).subscribe(data => {
+            console.log(data);
+            this.userMessage = "El Usuario ha sido Actualizado correctamente"
+            this.showSuccessMessage()
+          })
+        } else {
+          this.usersService.crearUsuario(this.usuario.value).subscribe(data => {
+            console.log(data);
+            this.userMessage = "El Usuario ha sido creado correctamente"
+            this.showSuccessMessage()
+          })
+        }
+
       } else {
         console.log("Contraseñas incorrectas");
       }
@@ -91,4 +187,21 @@ export class CreateUserComponent implements OnInit {
       console.log("Ingrese todo los campos");
     }
   }
+
+  showSuccessMessage() {
+    let timerInterval
+    Swal.fire({
+      title: '¡Creación exitosa!',
+      html: this.userMessage,
+      icon: 'success',
+      timer: 1500,
+      timerProgressBar: true,
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      this.router.navigateByUrl('dashboard/trabajadores')
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
+  }
+
 }

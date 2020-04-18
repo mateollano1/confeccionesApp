@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
   }
   changeColor(index: number) {
     this.clearColor()
-    console.log(index);
     switch (index) {
       case 0:
 this.inventarioColor = "#F58F0D"
@@ -60,6 +59,5 @@ this.reporteColor = "#F58F0D"
     } else {
       this.mode = 'side'
     }
-    console.log(window.innerWidth)
   }
 }

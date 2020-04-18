@@ -1,9 +1,14 @@
-<div class="card m-4">
+<div class="container mt-5" style="text-align: center;" *ngIf="loading">
+    <span class="material-icons spin">
+        refresh
+        </span>
+</div>
+<div class="card m-4" *ngIf="!loading">
 
     <div class="card-body">
         <div class="row mb-lg-5">
             <div class="col-md-8 col-sm-6 col-xs-6">
-                <h5>Información de usuarios</h5>
+                <h5 class="montserrat mt-3" style="font-size: 30px;">Información de usuarios</h5>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-6" style="text-align: right;">
                 <button mat-fab [routerLink]="['/dashboard/crear/trabajador']" routerLinkActive="router-link-active" style="background-color: #F58F0D;"><span class="material-icons">
@@ -13,41 +18,55 @@
         </div>
 
 
-        <div class="card-columns " style="margin: 0 auto; float: none;">
+        <div class="card-columns" style="margin: 0 auto; float: none;">
             <div class="col-md-12 " style="text-align: center;">
-                <div *ngFor="let item of usuario" class="card shadow mr-2 " style="width: 16rem; ">
+                <div *ngFor="let item of usuario; let i = index" class="card shadow mr-2 " style="width: 16rem; ">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 mb-2" style="text-align: center; ">
-                                <span style="font-size: 42px;" class="material-icons">
+                                <span style="font-size: 42px; color: #66615b;" class="material-icons">
                                 face
                                 </span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col md 12" style="text-align: left;">
-                                <span><h6>Nombre: </h6></span>
-                                <span><h6>{{item['nombre']}} {{item['apellido']}}</h6></span>
-                                <span><h6>Usuario: {{item['usuario']}}</h6></span>
-                                <span><h6>Tipo de usuario:</h6> </span>
-                                <span><h6>{{item['rol']['descripcion']}}</h6> </span>
-                                <span><h6>Punto de venta: {{item['puntoVenta']['nombre']}}</h6> </span>
-                                <span><h6>Tipo de contrato: {{item['contrato']['nombre']}}</h6></span>
-                                <span><h6>Periodo de finalización: </h6></span>
-                                <span><h6>{{item['nombre']}}</h6></span>
+                            <div class="col md 12 manrope" style="text-align: left;">
+                                <span> <strong>Nombre: </strong>{{item['nombre']}} {{item['apellido']}} </span><br>
+                                <span><strong>Usuario: </strong> {{item['usuario']}}</span><br>
+                                <span><strong>Tipo de usuario:</strong>  </span><br>
+                                <span>{{item['rol']['descripcion']}} </span><br>
+                                <span> <strong>Tipo de usuario: </strong>  </span><br>
+                                <span><h6>{{item['puntoVenta']['nombre']}} </h6> </span>
+
+                                <span><strong>Tipo de contrato: </strong> {{item['contrato']['nombre']}}</span><br>
+                                <span><strong>Periodo de finalización:</strong>  </span><br>
+                                <span><h6>{{item['fechaFin']}}</h6></span>
                             </div>
                         </div>
 
                         <div class="row ">
                             <div class="col-12 mt-4" style="text-align: center;">
-                                <button [routerLink]="['/dashboard/editar/trabajador/'+item.id]" routerLinkActive="router-link-active" style="margin-right: 10px;" mat-raised-button color="primary">
+
+                                <button [routerLink]="['/dashboard/editar/trabajador/'+item.id]" class="btn btn-light mr-5" style="padding: 1;
+                                border: 0 none;">
+                                    <span class="material-icons" style="color: #F58F0D;">
+                                        edit
+                                        </span>
+                                </button>
+                                <button (click)="delete(item.id,i)" class="btn btn-light" style="padding: 1;
+                                border: 0 none;">
+                                    <span class="material-icons">
+                                        delete
+                                        </span>
+                                </button>
+                                <!-- <button [routerLink]="['/dashboard/editar/trabajador/'+item.id]" routerLinkActive="router-link-active" style="margin-right: 10px;" mat-raised-button color="primary">
     
                                     <span class="material-icons">
                                     edit
                                     </span></button>
-                                <button mat-raised-button color="warn" (click)="delete(item.id)"><span class="material-icons">
+                                <button mat-raised-button color="warn" (click)="delete(item.id,i)"><span class="material-icons">
                                     delete
-                                    </span></button>
+                                    </span></button> -->
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,6 @@
+import { Rol } from './rol';
+import { TipoContrato } from './tipoContrato';
+import { PuntosVenta } from './puntoVenta';
 export class empleado{
 
     id:number;
@@ -7,8 +10,10 @@ export class empleado{
     usuario:string;
     contrasenia:string;
     foto:string;
-    fechaInicio:Date;
-    fechaFinalizacion: Date;
-    tipoContrato:string;
+    rol: Rol;
+    // fechaInicio:Date;
+    fechaFin: Date;
+    tipoContrato:TipoContrato;
+    PuntosVenta:PuntosVenta;
     
 }

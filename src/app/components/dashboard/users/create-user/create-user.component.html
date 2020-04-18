@@ -1,4 +1,10 @@
-<div class="m-4">
+<div class="container mt-5" style="text-align: center;" *ngIf="loading">
+    <span class="material-icons spin">
+        refresh
+        </span>
+</div>
+
+<div class="m-4" *ngIf="!loading">
     <div class="card p-4">
 
         <h5>{{header}}</h5>
@@ -31,9 +37,10 @@
                 <div class="row ">
                     <div class="col-md-5 mt-4">
                         <label>Tipo de usuario:</label>
-                        <select class="form-control" id="exampleFormControlSelect1" formControlName="idRol">
+                        <select formControlName="idRol" (change)="saveRol($event)" class="form-control" id="exampleFormControlSelect1">
                             <option disabled selected value> -- Seleccione -- </option>
-                            <option value="{{roles[i]['id']}}" *ngFor="let item of roles; let i = index">{{roles[i]['descripcion']}}</option>
+                            <option  value="{{i}}" *ngFor="let item of roles; let i = index">
+                                {{item['descripcion']}}</option>
                           
                         </select>
                     </div>
@@ -52,9 +59,9 @@
                     </div>
                     <div class="col-md-5 mt-4">
                         <label>Tipo de contrato:</label>
-                        <select class="form-control" formControlName="idContrato">
+                        <select formControlName="idContrato" (change)="saveContrato($event)" class="form-control">
                             <option disabled selected value> -- Seleccione -- </option>
-                            <option value="{{tipo[i]['id']}}" *ngFor="let item of tipo; let i = index">{{tipo[i]['nombre']}}</option>
+                            <option value="{{i}}" *ngFor="let item of tipo; let i = index">{{tipo[i]['nombre']}}</option>
                           
                         </select>
                     </div>
@@ -63,16 +70,16 @@
                 <div class="row ">
                     <div class="col-md-5 mt-4">
                         <label>Punto de venta:</label>
-                        <select class="form-control" formControlName="idPuntoVenta">
+                        <select formControlName="idPuntoVenta" (change)="savePuntoVenta($event)" class="form-control">
                             <option disabled selected value> -- Seleccione -- </option>
-                            <option value="{{puntos[i]['id']}}" *ngFor="let item of puntos; let i = index">{{puntos[i]['nombre']}}</option>
+                            <option value="{{i}}" *ngFor="let item of puntos; let i = index">{{puntos[i]['nombre']}}</option>
                           
                         </select>
                     </div>
                     <div class="col-md-5 mt-4">
                         <label for="example-date-input" class=" col-form-label">Fecha de Finalización</label>
                         <!-- <div class="col-10"> -->
-                        <input class="form-control" type="date" value="2011-08-19">
+                        <input formControlName="fechaFin" class="form-control" type="date" value="2011-08-19">
                         <!-- </div> -->
                     </div>
                 </div>
