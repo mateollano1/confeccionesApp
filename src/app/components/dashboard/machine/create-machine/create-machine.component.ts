@@ -3,6 +3,7 @@ import { Maquina } from '../../../../models/machine';
 import { MachinesService } from '../../../../services/machines.service';
 import { Form, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-machine',
@@ -16,6 +17,7 @@ export class CreateMachineComponent implements OnInit {
   loading:boolean=true;
   header:string="";
   id: string;
+  machineMessage:string="Maquina creada exitosamente"
 
   constructor(private machineService:MachinesService,private router: Router, private route: ActivatedRoute) { 
     //this.id = this.route.snapshot.paramMap.get("id")
@@ -47,10 +49,8 @@ export class CreateMachineComponent implements OnInit {
 
     } else {
       this.header = "Registrar Maquina"
-      this.createForm()
-
+      this.createForm();
     }
-    
   }
   save(){
     console.log("Form Maquina",this.maquinaForm.value);
@@ -60,8 +60,25 @@ export class CreateMachineComponent implements OnInit {
         } else {
           this.machineService.crearMaquina(this.maquinaForm.value).subscribe(data => {
             console.log(data);
+            this.showSuccessMessage();
           });
         }
       }
+  }
+
+
+  showSuccessMessage() {
+    let timerInterval
+    Swal.fire({
+      title: '¡Creación exitosa!',
+      html: this.machineMessage,
+      icon: 'success',
+      timer: 1500,
+      timerProgressBar: true,
+    }).then((result) => {
+      this.router.navigateByUrl('dashboard/maquinas')
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
   }
 }
