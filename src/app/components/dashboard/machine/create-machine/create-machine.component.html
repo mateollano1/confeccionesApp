@@ -1,1 +1,36 @@
-<p>create-machine works!</p>
+<div class="container mt-5" style="text-align: center;" *ngIf="loading">
+    <span class="material-icons spin">
+        refresh
+        </span>
+</div>
+
+<div class="m-4" *ngIf="!loading">
+    <div class="card p-4" >
+
+        <h5>{{header}}</h5>
+        <div class="form">
+            <form [formGroup]="maquinaForm">
+                <div class="row ">
+                    <div class="col-md-4 mt-4">
+                        <label>Marca:</label>
+                        <input class="form-control " type="text" formControlName="marca" placeholder="Marca">
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <label>Modelo:</label>
+                        <input class="form-control" type="text" formControlName="modelo" placeholder="Modelo">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4 mt-4">
+                        <label>Tipo de maquina:</label>
+                        <input class="form-control" formControlName="tipo" type="text" placeholder="Tipo">
+                    </div>
+                   
+                </div>
+            </form>
+            <div>
+                <button (click)="save()" class="btn btn-primary mt-4"> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

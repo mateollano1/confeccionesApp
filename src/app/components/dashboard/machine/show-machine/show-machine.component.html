@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="row mb-lg-5">
             <div class="col-md-8 col-sm-6 col-xs-6">
-                <h5 class="montserrat mt-3" style="font-size: 30px;">   <i>Información de maquinaria</i></h5>
+                <h5 class="montserrat mt-3" style="font-size: 30px;">Información de maquinaria</h5>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-6" style="text-align: right;">
                 <button mat-fab [routerLink]="['/dashboard/crear/maquina']" routerLinkActive="router-link-active" style="background-color: #F58F0D;"><span class="material-icons">
@@ -35,7 +35,7 @@
                             <div class="col md 12 manrope" style="text-align: left;">
                                 <span> <strong>Marca: </strong>{{item['marca']}} </span><br>
                                 <span><strong>Modelo: </strong> {{item['modelo']}}</span><br>
-                                <span><strong>Tipo de maquina</strong>  </span><br>
+                                <span><strong>Tipo de maquina:</strong>  </span><br>
                                 <span>{{item['tipo']}} </span><br>
                                 <span> <strong>Fecha de creación </strong>  </span><br>
                                 <span><h6>{{item['fechaCreacion']}} </h6> </span>
@@ -51,7 +51,7 @@
                                         edit
                                         </span>
                                 </button>
-                                <button  class="btn btn-light" style="padding: 1;
+                                <button  (click)="delete(item.id,i)" class="btn btn-light" style="padding: 1;
                                 border: 0 none;">
                                     <span class="material-icons">
                                         delete

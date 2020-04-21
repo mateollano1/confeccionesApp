@@ -22,4 +22,8 @@ export class MachinesService {
     }) );
   }
 
+  borrarMaquina(id:number){
+    return this.http.delete(`${url}/api/maquinas/{$id}`)
+  }
+
 }
