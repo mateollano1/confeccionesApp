@@ -1,9 +1,9 @@
-export class Machine{
-
+export class Maquina{
+    
     id:number;
-    brand:string;
-    model:string;
-    creationDate:Date;
-    type:string;
+    marca:string;
+    modelo:string;
+    fechaCreacion:Date;
+    tipo:string;
     
 }

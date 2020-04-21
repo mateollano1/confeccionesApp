@@ -21,6 +21,7 @@ const routes: Routes = [
       { path: 'inventario', component: ShowInventoryComponent },
       { path: 'maquinas', component: ShowMachineComponent },
       { path: 'crear/maquina', component: CreateMachineComponent },
+      { path: 'editar/maquina/:id', component: CreateMachineComponent },
       { path: 'proveedores', component: WatchProvidersComponent },
       { path: 'crear/proveedor', component: CreateProviderComponent },
       { path: 'trabajadores', component: WatchUsersComponent },
