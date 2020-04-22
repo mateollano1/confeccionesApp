@@ -11,10 +11,20 @@
         </div>
         <div style="margin-left: 2em;">
             <mat-list role="list">
+
                 <mat-list-item class="sidenavButton" (click)="changeColor(0)" [ngStyle]="{color: inventarioColor}" [routerLink]="['/dashboard/inventario']">
                     <span class="material-icons sidenavIcon">
                     assignment 
                     </span> INVENTARIO</mat-list-item>
+                <mat-list-item class="sidenavButton" (click)="changeColor(4)" [ngStyle]="{color: puntosV}" [routerLink]="['/dashboard/puntos-de-venta']">
+                    <span class="material-icons sidenavIcon">
+                            attach_money
+                                                    </span> PUNTOS DE VENTA</mat-list-item>
+                <mat-list-item class="sidenavButton" (click)="changeColor(3)" [ngStyle]="{color: trabajadorColor}" [routerLink]="['/dashboard/trabajadores']">
+                    <span class="material-icons sidenavIcon">
+                                                        person_pin
+                                                                    </span> TRABAJADORES</mat-list-item>
+
                 <mat-list-item class="sidenavButton" (click)="changeColor(1)" [ngStyle]="{color: maquinaColor}" [routerLink]="['/dashboard/maquinas']">
                     <span class="material-icons sidenavIcon">
                         memory 
@@ -23,11 +33,9 @@
                     <span class="material-icons sidenavIcon">
                     device_hub 
                             </span> PROVEEDORES</mat-list-item>
-                <mat-list-item class="sidenavButton" (click)="changeColor(3)" [ngStyle]="{color: trabajadorColor}" [routerLink]="['/dashboard/trabajadores']">
-                    <span class="material-icons sidenavIcon">
-                    person_pin
-                                </span> TRABAJADORES</mat-list-item>
-                <mat-list-item class="sidenavButton" (click)="changeColor(4)" [ngStyle]="{color: reporteColor}"><span class="material-icons sidenavIcon">
+
+
+                <mat-list-item class="sidenavButton" (click)="changeColor(5)" [ngStyle]="{color: reporteColor}"><span class="material-icons sidenavIcon">
                     event_note 
                                     </span> REPORTES</mat-list-item>
             </mat-list>

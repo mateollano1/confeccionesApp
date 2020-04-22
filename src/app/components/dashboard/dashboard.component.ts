@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   proveedorColor: string = ""
   trabajadorColor: string = ""
   reporteColor: string = ""
+  puntosV: string = ""
 
   mode: string = 'over';
 
@@ -36,6 +37,9 @@ this.proveedorColor = "#F58F0D"
 this.trabajadorColor = "#F58F0D"
         break;
       case 4:
+this.puntosV = "#F58F0D"
+        break;
+        case 5:
 this.reporteColor = "#F58F0D"
         break;
 
@@ -51,6 +55,7 @@ this.reporteColor = "#F58F0D"
     this.proveedorColor = "#66615b"
     this.trabajadorColor = "#66615b"
     this.reporteColor = "#66615b"
+    this.puntosV = "#66615b"
   }
   onResize() {
     let sizeWindow = window.innerWidth;

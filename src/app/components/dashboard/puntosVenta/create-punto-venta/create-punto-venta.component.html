@@ -1,0 +1,50 @@
+<div class="container mt-5" style="text-align: center;" *ngIf="loading">
+    <span class="material-icons spin">
+        refresh
+        </span>
+</div>
+
+<div class="m-4" *ngIf="!loading">
+    <div class="card p-4">
+
+        <h5>{{header}}</h5>
+        <div class="form">
+            <form [formGroup]="puntos" ngNativeValidate>
+                <div class="row ">
+                    <div class="col-md-5 mt-4">
+                        <label>Nombre: <span class="red">*</span></label>
+                        <input class="form-control " type="text" formControlName="nombre" placeholder="Nombre" required>
+                    </div>
+
+                </div>
+
+                <div class="row ">
+
+                    <div class="col-md-5 mt-4">
+                        <label>Dirección: <span class="red">*</span></label>
+
+                        <input class="form-control" type="text" formControlName="direccion" placeholder="Dirección" required>
+                    </div>
+                    <div class="col-md-5 mt-4">
+                        <label>Teléfono: <span class="red">*</span></label>
+                        <input class="form-control" type="number" formControlName="telefono" placeholder="Teléfono" required>
+                    </div>
+
+
+                </div>
+                <div class="row ">
+                    <div class="col-md-10 mt-4">
+                        <label>Descripción: <span class="red">*</span></label>
+                        <textarea class="form-control" placeholder="Descripcion" formControlName="detalle" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    </div>
+
+
+                </div>
+                <h6 class="red mt-1 ">{{errorMessage}}</h6>
+            </form>
+            <div>
+                <button (click)="save()" class="btn btn-primary mt-4"> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -34,3 +34,7 @@ body {
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
+
+.red {
+    color: red;
+}

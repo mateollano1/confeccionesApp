@@ -31,6 +31,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PuntosVentaComponent } from './components/dashboard/puntosVenta/puntos-venta/puntos-venta.component';
+import { CreatePuntoVentaComponent } from './components/dashboard/puntosVenta/create-punto-venta/create-punto-venta.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     WatchUserComponent,
     WatchProvidersComponent,
     CreateProviderComponent,
+    PuntosVentaComponent,
+    CreatePuntoVentaComponent,
   ],
   imports: [
     BrowserModule,

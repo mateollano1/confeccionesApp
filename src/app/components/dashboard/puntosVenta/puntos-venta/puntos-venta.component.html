@@ -1,0 +1,71 @@
+<div class="container mt-5" style="text-align: center;" *ngIf="loading">
+    <span class="material-icons spin">
+        refresh
+        </span>
+</div>
+<div class="card m-4" *ngIf="!loading">
+
+    <div class="card-body">
+        <div class="row mb-lg-5">
+            <div class="col-md-8 col-sm-6 col-xs-6">
+                <h5 class="montserrat mt-3" style="font-size: 30px;">Información de Puntos de Venta</h5>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-6" style="text-align: right;">
+                <button mat-fab [routerLink]="['/dashboard/crear/puntos-de-venta']" routerLinkActive="router-link-active" style="background-color: #F58F0D;"><span class="material-icons">
+                    add
+                    </span></button>
+            </div>
+        </div>
+
+
+        <div class="card-columns" style="margin: 0 auto; float: none;">
+            <div class="col-md-12 " style="text-align: center;">
+                <div *ngFor="let item of puntos; let i = index" class="card shadow mr-2 " style="width: 16rem; ">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-2" style="text-align: center; ">
+                                <span style="font-size: 42px; color: #66615b;" class="material-icons">
+                                    timeline
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col md 12 manrope" style="text-align: left;">
+                                <span> <strong>Nombre: </strong>{{item['nombre']}}  </span><br>
+                                <span><strong>Detalle: </strong> {{item['detalle']}}</span><br>
+                                <span> <strong>Teléfono: </strong>  </span><br>
+                                <span><h6>{{item['telefono']}} </h6> </span>
+                                <span><strong>Dirección:</strong>  </span><br>
+                                <span>{{item['direccion']}} </span><br>
+
+
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-12 mt-4" style="text-align: center;">
+
+                                <button [routerLink]="['/dashboard/editar/puntos-de-venta/'+item.id]" class="btn btn-light mr-5" style="padding: 1;
+                                border: 0 none;">
+                                    <span class="material-icons" style="color: #F58F0D;">
+                                        edit
+                                        </span>
+                                </button>
+                                <button (click)="delete(item.id)" class="btn btn-light" style="padding: 1;
+                                border: 0 none;">
+                                    <span class="material-icons">
+                                        delete
+                                        </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

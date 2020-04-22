@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Provider } from '../../../../models/provider';
+import { ProvidersService } from '../../../../services/providers.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-watch-providers',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WatchProvidersComponent implements OnInit {
 
-  constructor() { }
-
+  loading: boolean = true
+  provs: Provider[]
+  constructor(private providerService: ProvidersService) { }
+  
   ngOnInit(): void {
+    this.getProviders()
+  }
+
+  getProviders(){
+    this.providerService.getProviders().subscribe(data =>{
+      console.log(data);
+      
+    })
   }
 
 }
