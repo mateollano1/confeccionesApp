@@ -38,8 +38,6 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
     this.getRoles()
     this.createForm()
-
-
   }
   verifyAction(id: string) {
     this.loading = false

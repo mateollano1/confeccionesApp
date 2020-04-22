@@ -7,12 +7,12 @@
 <div class="m-4" *ngIf="!loading">
     <div class="card p-4">
 
-        <h5>{{header}}</h5>
+        <h5 class="montserrat">{{header}}</h5>
         <div class="form">
             <form [formGroup]="usuario">
                 <div class="row ">
                     <div class="col-md-5 mt-4">
-                        <label>Nombre:</label>
+                        <label><span>Nombre:</span></label>
                         <input class="form-control " type="text" formControlName="nombre" placeholder="Nombre">
                     </div>
                     <div class="col-md-5 mt-4">

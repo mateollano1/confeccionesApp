@@ -9,6 +9,8 @@ import { WatchProvidersComponent } from './components/dashboard/providers/watch-
 import { CreateProviderComponent } from './components/dashboard/providers/create-provider/create-provider.component';
 import { WatchUsersComponent } from './components/dashboard/users/watch-users/watch-users.component';
 import { CreateUserComponent } from './components/dashboard/users/create-user/create-user.component';
+import { PuntosVentaComponent } from './components/dashboard/puntosVenta/puntos-venta/puntos-venta.component';
+import { CreatePuntoVentaComponent } from './components/dashboard/puntosVenta/create-punto-venta/create-punto-venta.component';
 
 
 const routes: Routes = [
@@ -26,6 +28,9 @@ const routes: Routes = [
       { path: 'trabajadores', component: WatchUsersComponent },
       { path: 'crear/trabajador', component: CreateUserComponent },
       { path: 'editar/trabajador/:id', component: CreateUserComponent },
+      { path: 'puntos-de-venta', component: PuntosVentaComponent },
+      { path: 'crear/puntos-de-venta', component: CreatePuntoVentaComponent },
+      { path: 'editar/puntos-de-venta/:id', component: CreatePuntoVentaComponent },
 
 
     ]

@@ -1,7 +1,7 @@
 export class Provider{
     id:number;
-    name:string;
+    nombre:string;
     nit:string;
-    location:string;
-    phoneNumber:number;
+    ubicacion:string;
+    telefono:number;
 }
