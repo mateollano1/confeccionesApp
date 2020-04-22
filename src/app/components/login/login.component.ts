@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { log } from 'util';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import {ThemePalette} from '@angular/material/core';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent implements OnInit {
   durationInSeconds = 3;
   public log: FormGroup
+  progress:boolean;
+  color: ThemePalette ="primary";
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
 
   constructor(private loginService: LoginService,
     private route: Router,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.progress=false;
     localStorage.removeItem('access_token');
     this.log = new FormGroup({
       'username': new FormControl('', Validators.required),
@@ -30,6 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.progress=true;
+
     if (this.log.valid) {
       // console.log(this.log.value);
 
@@ -37,20 +45,23 @@ export class LoginComponent implements OnInit {
         // console.log(data);
         localStorage.setItem('access_token', data['access_token']);
         this.route.navigateByUrl('/dashboard/inventario')
+        this.progress=false;
 
       }, err => {
         if (err.status == 400 || err.status == 401) {
+          this.progress=false;
+
           // console.log("Usuario o contrasela incorrectos");
           this.penSnackBar()
         } else {
           console.log("error en el servidor");
-
+          this.progress=false;
         }
         console.log(err.status);
-
       })
       //llama servicio
     }else{
+      this.progress=true;
       this.penSnackBarValidInputs()
       
     }
@@ -64,6 +75,7 @@ export class LoginComponent implements OnInit {
   }
 
   penSnackBarValidInputs() {
+    this.progress=false;
     this._snackBar.openFromComponent(ValidInputsComponent, {
       duration: this.durationInSeconds * 1000,
     });
@@ -95,3 +107,7 @@ export class PizzaPartyComponent { }
   `],
 })
 export class ValidInputsComponent { }
+
+export class ProgressSpinnerConfigurableExample {
+ 
+}
