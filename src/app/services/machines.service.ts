@@ -26,4 +26,12 @@ export class MachinesService {
     return this.http.delete(`${url}/api/maquinas/${id}`)
   }
 
+  obtenerMaquina(id:string):Observable<Maquina>{
+    return this.http.get(`${url}/api/maquinas/${id}`).pipe( map( (data: any) => {
+      return data;
+    }) );
+  }
+  editarMaquina(maquina: Maquina, id: string){
+    return this.http.put(`${url}/api/maquinas/${id}`,maquina)
+  }
 }

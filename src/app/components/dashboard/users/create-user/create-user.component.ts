@@ -57,12 +57,10 @@ export class CreateUserComponent implements OnInit {
   getUser() {
     this.usersService.getUsuario(this.id).subscribe(data => {
       console.log(data);
+      this.empleado = data;
       this.createEditForm()
 
     }, err => {
-      this.empleado = err.error
-      console.log(this.empleado);
-      this.createEditForm()
 
 
     })

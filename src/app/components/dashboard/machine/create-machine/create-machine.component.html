@@ -26,6 +26,11 @@
                         <input class="form-control" formControlName="tipo" type="text" placeholder="Tipo">
                     </div>
                    
+                    <div class="col-md-5 mt-4" *ngIf="activar" >
+                        <label for="example-date-input" class=" col-form-label">Fecha de creación</label>
+                        <input formControlName="fechaCreacion" class="form-control" type="text" value="20-09-20">
+                        <!-- </div> -->
+                    </div>
                 </div>
             </form>
             <div>

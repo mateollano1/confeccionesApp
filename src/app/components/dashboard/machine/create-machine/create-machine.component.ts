@@ -17,20 +17,30 @@ export class CreateMachineComponent implements OnInit {
   loading:boolean=true;
   header:string="";
   id: string;
-  machineMessage:string="Maquina creada exitosamente"
-
+  fecha;
+  activar:boolean=false;
+  machineMessage:string="";
   constructor(private machineService:MachinesService,private router: Router, private route: ActivatedRoute) { 
-    //this.id = this.route.snapshot.paramMap.get("id")
+    this.id = this.route.snapshot.paramMap.get("id")
+    
     //Cuando se va editar trae id
-    //console.log("idconstructor",this.id)
+    console.log("idconstructor",this.id)
 
   }
 
   ngOnInit(): void {
-
     this.verifyAction(this.id);
-
   }
+
+  getMaquina(){
+    this.machineService.obtenerMaquina(this.id).subscribe( data=>{
+      this.maquina=data;
+      this.createEditForm();
+      this.maquinaForm.controls['fechaCreacion'].disable();
+      console.log("Maquina id",this.maquina);
+    })
+  }
+
   createForm(){
     this.loading = false
     this.maquinaForm = new FormGroup({
@@ -38,14 +48,24 @@ export class CreateMachineComponent implements OnInit {
       'modelo': new FormControl('', Validators.required),
       'tipo': new FormControl('', Validators.required), 
     })
-
   }
-  verifyAction(id: string) {
-    this.loading = false
 
+  createEditForm() {
+    this.loading=false;
+    this.maquinaForm = new FormGroup({
+      'marca': new FormControl(this.maquina['marca'], Validators.required),
+      'modelo': new FormControl(this.maquina['modelo'], Validators.required),
+      'tipo': new FormControl(this.maquina['tipo'], Validators.required),
+      'fechaCreacion': new FormControl(this.maquina['fechaCreacion']),
+//'fechaCreacion': new FormControl([{value: this.maquina['fechaCreacion'], disabled: true}, Validators.required]),
+    })
+  }
+
+  verifyAction(id: string) {
     if (id) {
       this.header = "Editar Maquina"
-      //this.getUser()
+      this.activar=true;
+      this.getMaquina();
 
     } else {
       this.header = "Registrar Maquina"
@@ -56,16 +76,21 @@ export class CreateMachineComponent implements OnInit {
     console.log("Form Maquina",this.maquinaForm.value);
     if (this.maquinaForm.valid){
       if (this.id) {
+        this.machineService.editarMaquina(this.maquinaForm.value,this.id).subscribe(data =>{
+          console.log(data);
+            this.machineMessage = "La maquina ha sido actualizada correctamente"
+            this.showSuccessMessage()
+        })
          console.log("Editar")
         } else {
           this.machineService.crearMaquina(this.maquinaForm.value).subscribe(data => {
             console.log(data);
+            this.machineMessage = "Maquina creada exitosamente"
             this.showSuccessMessage();
           });
         }
       }
   }
-
 
   showSuccessMessage() {
     let timerInterval
