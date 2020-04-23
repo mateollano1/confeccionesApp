@@ -1,5 +1,5 @@
 <div class="login">
-    <div class="container" style="">
+    <div class="container">
         <mat-progress-spinner
         class="example-margin"
         [color]="color"
@@ -18,12 +18,12 @@
             <form [formGroup]="log">
                 <p>
                     <mat-form-field style=" font-size: 15px; margin-top: 20px;">
-                        <input required matInput placeholder="Usuario" formControlName="username">
+                        <input required matInput placeholder="Usuario"   disabled="isDisabled" formControlName="username">
                     </mat-form-field>
                 </p>
                 <p>
                     <mat-form-field style=" font-size: 15px">
-                        <input   required type="password" matInput placeholder="Password" formControlName="password">
+                        <input   required type="password"  disabled="isDisabled" matInput placeholder="Password" formControlName="password">
                         
                     </mat-form-field>
                 </p>
@@ -31,7 +31,7 @@
 
                 </div>
                 <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
-                    <button mat-raised-button color="primary" class="login-button" (click)="login()">Ingresar <i class="material-icons">
+                    <button mat-raised-button color="primary" class="login-button"  [disabled]="isDisabled" (click)="login()">Ingresar <i class="material-icons">
                         arrow_right
                         </i></button>
                 </div>
