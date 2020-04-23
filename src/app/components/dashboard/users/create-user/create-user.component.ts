@@ -124,6 +124,7 @@ export class CreateUserComponent implements OnInit {
   getRoles() {
     this.usersService.getRoles().subscribe((data) => {
       this.roles = data
+      console.log(data);
       this.getPuntosVenta()
 
 

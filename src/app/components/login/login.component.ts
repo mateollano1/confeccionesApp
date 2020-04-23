@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
   color: ThemePalette ="primary";
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
-
+  nombre:string;
+  
   constructor(private loginService: LoginService,
     private route: Router,
     private _snackBar: MatSnackBar) { }
@@ -44,7 +45,11 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.log.value).subscribe(data => {
         // console.log(data);
         localStorage.setItem('access_token', data['access_token']);
-        this.route.navigateByUrl('/dashboard/inventario')
+        localStorage.setItem('rol', data['rol']);
+        localStorage.setItem('nombre',data['nombre']+' '+data['apellido']);
+        this.nombre=localStorage.getItem('nombre')
+        console.log(data);
+        this.route.navigateByUrl('/dashboard/inventario');
         this.progress=false;
 
       }, err => {

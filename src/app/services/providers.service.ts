@@ -13,7 +13,7 @@ export class ProvidersService {
   
   constructor(private http: HttpClient) { }
   getProviders(): Observable<Provider[]>  {
-    return this.http.get(`${url}/api/providers/`).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/proveedores/`).pipe( map( (data: any) => {
       return data;
     }) );
   }
