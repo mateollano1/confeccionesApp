@@ -25,7 +25,7 @@ export class ShowMachineComponent implements OnInit {
   getMaquinas(){
     this.machineService.obtenerMaquinas().subscribe(data =>{
       this.maquinas=data['content'];
-      console.log("Maquinas",this.maquinas)
+      //console.log("Maquinas",this.maquinas)
       this.loading=false;
 
     }, err=>{
@@ -49,16 +49,16 @@ export class ShowMachineComponent implements OnInit {
         this.machineService.borrarMaquina(id).subscribe(data => {
           this.maquinas.splice(index,1)
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'Eliminado correctamente',
+            '',
             'success'
           )
         })
 
       }
     });
-    console.log("index",index)
-    console.log("id",id);
+   // console.log("index",index)
+    //console.log("id",id);
   }
   
 }

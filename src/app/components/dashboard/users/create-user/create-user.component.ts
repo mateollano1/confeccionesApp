@@ -54,14 +54,14 @@ export class CreateUserComponent implements OnInit {
   }
   getUser() {
     this.usersService.getUsuario(this.id).subscribe(data => {
-      console.log(data);
+      //console.log(data);
       this.empleado = data;
       this.createEditForm()
-
-    }, err => {
-
-
-    })
+    }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
+    });
   }
   createEditForm() {
     this.usuario = new FormGroup({
@@ -124,11 +124,13 @@ export class CreateUserComponent implements OnInit {
   getRoles() {
     this.usersService.getRoles().subscribe((data) => {
       this.roles = data
-      console.log(data);
+      //console.log(data);
       this.getPuntosVenta()
-
-
-    })
+    }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
+    });
   }
   saveRol(event: any) {
     this.idRol = event.target.value
@@ -143,52 +145,65 @@ export class CreateUserComponent implements OnInit {
     this.usersService.getPuntosVenta().subscribe(data => {
       this.puntos = data['content']
       this.getTipoContrato()
-
-    })
+    }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
+    });
   }
   getTipoContrato() {
     this.usersService.getTipoContrato().subscribe(data => {
       this.tipo = data
       this.verifyAction(this.id)
-
-    })
+    }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
+    });
   }
   save() {
-    console.log(this.usuario.value);
+    //console.log(this.usuario.value);
 
     if (this.usuario.valid /* && this.idRol !== "" && this.idContrato !== "" && this.idPuntoVenta !== "" */) {
       this.usuario.value['rol'] = this.roles[this.idRol]
       this.usuario.value['contrato'] = this.tipo[this.idContrato]
       this.usuario.value['puntoVenta'] = this.tipo[this.idPuntoVenta]
-      console.log(this.usuario.value);
+      //console.log(this.usuario.value);
 
       if (this.usuario.value['contrasenia'] == this.usuario.value['contraseniaR']) {
         if (this.id) {
           this.usersService.editarUsuario(this.usuario.value, this.id).subscribe(data => {
-            console.log(data);
+            //console.log(data);
             this.userMessage = "El Usuario ha sido Actualizado correctamente"
-            this.showSuccessMessage()
-          })
+            this.showSuccessMessage("¡Actialización exitosa!")
+          }, err=>{
+            if (err.status == 401) {
+              this.router.navigateByUrl('/login')
+            }
+          });
         } else {
           this.usersService.crearUsuario(this.usuario.value).subscribe(data => {
-            console.log(data);
+            //console.log(data);
             this.userMessage = "El Usuario ha sido creado correctamente"
-            this.showSuccessMessage()
-          })
+            this.showSuccessMessage("¡Creación exitosa!")
+          }, err=>{
+            if (err.status == 401) {
+              this.router.navigateByUrl('/login')
+            }
+          });
         }
-
       } else {
-        console.log("Contraseñas incorrectas");
+        //console.log("Contraseñas incorrectas");
       }
     } else {
-      console.log("Ingrese todo los campos");
+      //console.log("Ingrese todo los campos");
     }
   }
 
-  showSuccessMessage() {
+  showSuccessMessage(mensaje:string) {
     let timerInterval
     Swal.fire({
-      title: '¡Creación exitosa!',
+      title: mensaje,
       html: this.userMessage,
       icon: 'success',
       timer: 1500,

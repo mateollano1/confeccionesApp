@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { UsersService } from '../../../../services/users.service';
 import { empleado } from '../../../../models/empleado';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-watch-users',
   templateUrl: './watch-users.component.html',
@@ -10,7 +11,7 @@ import { empleado } from '../../../../models/empleado';
 export class WatchUsersComponent implements OnInit {
   usuario: empleado[]
   loading: boolean = true
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService,private router:Router) {
 
   }
 
@@ -19,14 +20,17 @@ export class WatchUsersComponent implements OnInit {
   }
   getEmpleados() {
     this.usersService.getUsuarios().subscribe(data => {
-      console.log(data['content']);
+      //console.log(data['content']);
       this.usuario = data['content']
       this.loading = false
-
-    })
+    }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
+    });
   }
   delete(id: number, index: number) {
-    console.log(id);
+    //console.log(id);
 
     Swal.fire({
       title: '¿Está seguro que desea eliminar el usuario?',
@@ -41,8 +45,8 @@ export class WatchUsersComponent implements OnInit {
         this.usersService.deleteUSer(id).subscribe(data => {
           this.usuario.splice(index,1)
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'Eliminado correctamente',
+            '',
             'success'
           )
         })

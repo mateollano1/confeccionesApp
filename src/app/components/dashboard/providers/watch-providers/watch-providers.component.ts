@@ -3,6 +3,8 @@ import { Provider } from '../../../../models/provider';
 import { ProvidersService } from '../../../../services/providers.service';
 import { log } from 'util';
 import Swal from 'sweetalert2';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-watch-providers',
@@ -14,7 +16,7 @@ export class WatchProvidersComponent implements OnInit {
   loading: boolean = true;
   provs: Provider[]
   
-  constructor(private providerService: ProvidersService) { }
+  constructor(private providerService: ProvidersService,private router:Router) { }
   
   ngOnInit(): void {
     this.getProviders()
@@ -22,11 +24,14 @@ export class WatchProvidersComponent implements OnInit {
 
   getProviders(){
     this.providerService.getProviders().subscribe(data =>{
-      console.log(data);
+      //console.log(data);
       this.provs=data['content'];
-      this.loading = false;
-      
-    })
+      this.loading = false; 
+    }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
+    });
   }
   delete(id:number, index:number){
 
@@ -43,8 +48,8 @@ export class WatchProvidersComponent implements OnInit {
         this.providerService.deleteProvider(id).subscribe(data => {
           this.provs.splice(index,1)
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'Eliminado correctamente',
+            '',
             'success'
           )
         })

@@ -53,10 +53,13 @@ export class CreateProviderComponent implements OnInit {
   }
   getProvider() {
     this.providersService.getProveedor(this.id).subscribe(data => {
-      console.log(data);
+     // console.log(data);
       this.provider = data;
       this.createEditForm()
-
+    }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
     });
   }
   createEditForm() {
@@ -71,30 +74,38 @@ export class CreateProviderComponent implements OnInit {
 
   
   save(){
-    console.log(this,this.proveedorForm.value)
+    //console.log(this,this.proveedorForm.value)
     if (this.proveedorForm.valid){
       if (this.id) {
         this.providersService.editarProveedor(this.proveedorForm.value, this.id).subscribe(data => {
-          console.log(data);
+          //console.log(data);
           this.providerMessage = "El proveedor ha sido actualizado correctamente"
-          this.showSuccessMessage()
-        })
+          this.showSuccessMessage("¡Actualización exitosa!")
+        }, err=>{
+          if (err.status == 401) {
+            this.router.navigateByUrl('/login')
+          }
+        });
       } else {
         this.providersService.crearProvider(this.proveedorForm.value).subscribe(data => {
-          console.log(data);
+          //console.log(data);
           this.providerMessage = "El proveedor ha sido creado correctamente"
-          this.showSuccessMessage()
-        })
+          this.showSuccessMessage("¡Creación exitosa!")
+        }, err=>{
+          if (err.status == 401) {
+            this.router.navigateByUrl('/login')
+          }
+        });
       }
     } else {
-      console.log("Ingrese todo los campos");
+     // console.log("Ingrese todo los campos");
     }
     
   }
-  showSuccessMessage() {
+  showSuccessMessage(mensaje:string) {
     let timerInterval
     Swal.fire({
-      title: '¡Creación exitosa!',
+      title: mensaje,
       html: this.providerMessage,
       icon: 'success',
       timer: 1500,

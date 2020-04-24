@@ -24,7 +24,7 @@ export class MachinesService {
   }
 
   obtenerMaquinas():Observable<Maquina>{
-    console.log(this.headers);
+    //console.log(this.headers);
     
     return this.http.get(`${url}/api/maquinas/`,{headers:this.headers}).pipe( map( (data: any) => {
       return data;

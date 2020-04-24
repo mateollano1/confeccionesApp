@@ -23,9 +23,6 @@ export class CreateMachineComponent implements OnInit {
   constructor(private machineService:MachinesService,private router: Router, private route: ActivatedRoute) { 
     this.id = this.route.snapshot.paramMap.get("id")
     
-    //Cuando se va editar trae id
-    console.log("idconstructor",this.id)
-
   }
 
   ngOnInit(): void {
@@ -37,8 +34,12 @@ export class CreateMachineComponent implements OnInit {
       this.maquina=data;
       this.createEditForm();
       this.maquinaForm.controls['fechaCreacion'].disable();
-      console.log("Maquina id",this.maquina);
-    })
+      //console.log("Maquina id",this.maquina);
+      }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
+    });
   }
 
   createForm(){
@@ -73,29 +74,37 @@ export class CreateMachineComponent implements OnInit {
     }
   }
   save(){
-    console.log("Form Maquina",this.maquinaForm.value);
+   
     if (this.maquinaForm.valid){
       if (this.id) {
         this.machineService.editarMaquina(this.maquinaForm.value,this.id).subscribe(data =>{
-          console.log(data);
+          //console.log(data);
             this.machineMessage = "La maquina ha sido actualizada correctamente"
-            this.showSuccessMessage()
-        })
-         console.log("Editar")
+            this.showSuccessMessage("¡Actualización exitosa!")
+          }, err=>{
+            if (err.status == 401) {
+              this.router.navigateByUrl('/login')
+            }
+          });
+         //console.log("Editar")
         } else {
           this.machineService.crearMaquina(this.maquinaForm.value).subscribe(data => {
-            console.log(data);
+            //console.log(data);
             this.machineMessage = "Maquina creada exitosamente"
-            this.showSuccessMessage();
+            this.showSuccessMessage("¡Creación exitosa!");
+          }, err=>{
+            if (err.status == 401) {
+              this.router.navigateByUrl('/login')
+            }
           });
         }
       }
   }
 
-  showSuccessMessage() {
+  showSuccessMessage(mensaje:string) {
     let timerInterval
     Swal.fire({
-      title: '¡Creación exitosa!',
+      title: mensaje,
       html: this.machineMessage,
       icon: 'success',
       timer: 1500,

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     if (this.log.valid) {
       // console.log(this.log.value);
       this.loginService.login(this.log.value).subscribe(data => {
-        console.log(data);
+        //console.log(data);
 
 
         let nombreCompleto = data['nombre'] + ' ' + data['apellido']
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('nombre', nombre);
 
 
-        console.log(data);
+        //console.log(data);
         this.progress = false;
         if (data['rol'] == "ROLE_EMPLEADO" || data['rol'] == "ROLE_ADMIN_PUNTO" ) {
           this.route.navigateByUrl('/dashboard/inventario');
@@ -78,10 +78,10 @@ export class LoginComponent implements OnInit {
           // console.log("Usuario o contrasela incorrectos");
           this.penSnackBar()
         } else {
-          console.log("error en el servidor");
+          //console.log("error en el servidor");
           this.progress = false;
         }
-        console.log(err.status);
+        //console.log(err.status);
       })
       //llama servicio
     } else {
