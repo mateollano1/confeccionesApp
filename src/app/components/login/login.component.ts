@@ -20,8 +20,12 @@ export class LoginComponent implements OnInit {
   color: ThemePalette ="primary";
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
+
   nombre:string;
   
+
+  isDisabled:boolean=false;
+
   constructor(private loginService: LoginService,
     private route: Router,
     private _snackBar: MatSnackBar) { }
@@ -38,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.progress=true;
-
+    this.isDisabled=true;
     if (this.log.valid) {
       // console.log(this.log.value);
       this.loginService.login(this.log.value).subscribe(data => {
@@ -55,7 +59,7 @@ export class LoginComponent implements OnInit {
       }, err => {
         if (err.status == 400 || err.status == 401) {
           this.progress=false;
-
+          this.isDisabled=false;
           // console.log("Usuario o contrasela incorrectos");
           this.penSnackBar()
         } else {
@@ -67,6 +71,7 @@ export class LoginComponent implements OnInit {
       //llama servicio
     }else{
       this.progress=true;
+      this.isDisabled=false;
       this.penSnackBarValidInputs()
       
     }
