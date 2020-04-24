@@ -14,7 +14,12 @@ import { log } from 'util';
 })
 export class UsersService {
 
-  constructor(private http: HttpClient) { }
+  private headers;
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}` ,
+    });
+   }
   getRoles(): Observable<Rol[]>  {
     return this.http.get(`${url}/api/roles/`).pipe( map( (data: any) => {
       return data;
@@ -31,7 +36,7 @@ export class UsersService {
     }) );
   }
   getUsuarios(): Observable<empleado>{
-    return this.http.get(`${url}/api/usuarios/`).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/usuarios/`, /* {headers:this.headers} */).pipe( map( (data: any) => {
       return data;
     }) );
   }

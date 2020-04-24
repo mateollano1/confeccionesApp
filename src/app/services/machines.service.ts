@@ -10,14 +10,22 @@ import {map} from 'rxjs/operators'
 })
 export class MachinesService {
 
-  constructor(private http:HttpClient) {}
+  private headers;
+  constructor(private http:HttpClient) {
+    this.headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}` ,
+    });
+
+  }
 
   crearMaquina(maquina:Maquina){
     return this.http.post(`${url}/api/maquinas/`, maquina)
   }
 
   obtenerMaquinas():Observable<Maquina>{
-    return this.http.get(`${url}/api/maquinas/`).pipe( map( (data: any) => {
+    console.log(this.headers);
+    
+    return this.http.get(`${url}/api/maquinas/`,{headers:this.headers}).pipe( map( (data: any) => {
       return data;
     }) );
   }

@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       // console.log(this.log.value);
 
       this.loginService.login(this.log.value).subscribe(data => {
-        // console.log(data);
+        console.log(data);
         localStorage.setItem('access_token', data['access_token']);
         this.route.navigateByUrl('/dashboard/inventario')
         this.progress=false;

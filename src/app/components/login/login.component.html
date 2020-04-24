@@ -1,13 +1,7 @@
 <div class="login">
-    <div class="container" style="">
-        <mat-progress-spinner
-        class="example-margin"
-        [color]="color"
-        [mode]="mode"
-        [value]="value"
-        *ngIf="progress"
-        >
-    </mat-progress-spinner>
+    <div class="container">
+        <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [value]="value" *ngIf="progress">
+        </mat-progress-spinner>
     </div>
     <!-- <img src="../assets/imgs/sewing-machine.png" style="margin-left: 25%;" width="40%"> -->
     <mat-card class="mat-elevation-z5" style="width: 30em;height: 35em;  background-image: url('../assets/imgs/fondo.jpg')">
@@ -23,8 +17,8 @@
                 </p>
                 <p>
                     <mat-form-field style=" font-size: 15px">
-                        <input   required type="password" matInput placeholder="Password" formControlName="password">
-                        
+                        <input required type="password" matInput placeholder="Password" formControlName="password">
+
                     </mat-form-field>
                 </p>
                 <div class="">
