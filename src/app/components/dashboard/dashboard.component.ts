@@ -12,10 +12,28 @@ export class DashboardComponent implements OnInit {
   trabajadorColor: string = ""
   reporteColor: string = ""
   puntosV: string = ""
-
+  rol:string;
   mode: string = 'over';
+  isAdmin:boolean=false;
+  isRecursos:boolean=false
+  isEmpleado:boolean=false;
+  isAdminP:boolean=false;
+  nombre:string;
 
-  constructor() { }
+  constructor() { 
+    this.rol=localStorage.getItem('rol');
+    this.nombre=localStorage.getItem('nombre');
+    //console.log(this.nombre)
+    if(this.rol=='ROLE_ADMIN'){
+      this.isAdmin=true;
+    }else if(this.rol=='ROLE_EMPLEADO'){
+      this.isEmpleado=true;
+    }else if(this.rol=='ROLE_ADMIN_PUNTO'){
+      this.isAdminP=true;
+    }else if(this.rol=='ROLE_RECURSO_HUMANO'){
+      this.isRecursos=true;
+    }
+  }
 
   ngOnInit(): void {
     this.onResize();

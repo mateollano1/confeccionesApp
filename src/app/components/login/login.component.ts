@@ -21,6 +21,11 @@ export class LoginComponent implements OnInit {
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
 
+  nombre:string;
+  
+
+  isDisabled:boolean=false;
+
   constructor(private loginService: LoginService,
     private route: Router,
     private _snackBar: MatSnackBar) { }
@@ -37,20 +42,24 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.progress=true;
-
+    this.isDisabled=true;
     if (this.log.valid) {
       // console.log(this.log.value);
-
       this.loginService.login(this.log.value).subscribe(data => {
         console.log(data);
         localStorage.setItem('access_token', data['access_token']);
-        this.route.navigateByUrl('/dashboard/inventario')
+        localStorage.setItem('rol', data['rol']);
+        localStorage.setItem('nombre',data['nombre']+' '+data['apellido']);
+
+    
+        console.log(data);
+        this.route.navigateByUrl('/dashboard/inventario');
         this.progress=false;
 
       }, err => {
         if (err.status == 400 || err.status == 401) {
           this.progress=false;
-
+          this.isDisabled=false;
           // console.log("Usuario o contrasela incorrectos");
           this.penSnackBar()
         } else {
@@ -62,6 +71,7 @@ export class LoginComponent implements OnInit {
       //llama servicio
     }else{
       this.progress=true;
+      this.isDisabled=false;
       this.penSnackBarValidInputs()
       
     }

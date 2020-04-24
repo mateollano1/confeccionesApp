@@ -1,1 +1,40 @@
-<p>create-provider works!</p>
+<div class="container mt-5" style="text-align: center;" *ngIf="loading">
+    <span class="material-icons spin">
+        refresh
+        </span>
+</div>
+
+<div class="m-4" *ngIf="!loading">
+    <div class="card p-4" >
+
+        <h5>{{header}}</h5>
+        <div class="form">
+            <form [formGroup]="proveedorForm">
+                <div class="row ">
+                    <div class="col-md-4 mt-4">
+                        <label>Nombre:<span class="red">*</span></label>
+                        <input class="form-control " required  type="text" formControlName="nombre" placeholder="Nombre">
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <label>Nit:<span class="red">*</span></label>
+                        <input class="form-control" type="text"  required formControlName="nit" placeholder="Nit">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4 mt-4">
+                        <label>Ubicación:<span class="red">*</span></label>
+                        <input class="form-control" formControlName="ubicacion" required type="text" placeholder="Ubicacion">
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <label>Télefono:<span class="red">*</span></label>
+                        <input class="form-control" formControlName="telefono" required type="text" placeholder="Telefono">
+                    </div>
+                    
+                </div>
+            </form>
+            <div>
+                <button (click)="save()" class="btn btn-primary mt-4"> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

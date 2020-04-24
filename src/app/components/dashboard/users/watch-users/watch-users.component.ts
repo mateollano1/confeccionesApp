@@ -29,13 +29,13 @@ export class WatchUsersComponent implements OnInit {
     console.log(id);
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Está seguro que desea eliminar el usuario?',
+      text: "La información se perderá",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Sí'
     }).then((result) => {
       if (result.value) {
         this.usersService.deleteUSer(id).subscribe(data => {

@@ -12,20 +12,22 @@
             <form [formGroup]="log">
                 <p>
                     <mat-form-field style=" font-size: 15px; margin-top: 20px;">
-                        <input required matInput placeholder="Usuario" formControlName="username">
+                        <input required matInput placeholder="Usuario" disabled="isDisabled" formControlName="username">
                     </mat-form-field>
                 </p>
                 <p>
                     <mat-form-field style=" font-size: 15px">
-                        <input required type="password" matInput placeholder="Password" formControlName="password">
+                        <<<<<<< HEAD <input required type="password" matInput placeholder="Password" formControlName="password">
 
+                            =======
+                            <input required type="password" disabled="isDisabled" matInput placeholder="Password" formControlName="password"> >>>>>>> 06e8b18f40074fbc2fec678aa7d1a3d1af62fc2a
                     </mat-form-field>
                 </p>
                 <div class="">
 
                 </div>
                 <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
-                    <button mat-raised-button color="primary" class="login-button" (click)="login()">Ingresar <i class="material-icons">
+                    <button mat-raised-button color="primary" class="login-button" [disabled]="isDisabled" (click)="login()">Ingresar <i class="material-icons">
                         arrow_right
                         </i></button>
                 </div>

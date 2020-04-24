@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Provider } from '../../../../models/provider';
 import { ProvidersService } from '../../../../services/providers.service';
 import { log } from 'util';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-watch-providers',
@@ -10,8 +11,9 @@ import { log } from 'util';
 })
 export class WatchProvidersComponent implements OnInit {
 
-  loading: boolean = true
+  loading: boolean = true;
   provs: Provider[]
+  
   constructor(private providerService: ProvidersService) { }
   
   ngOnInit(): void {
@@ -21,8 +23,33 @@ export class WatchProvidersComponent implements OnInit {
   getProviders(){
     this.providerService.getProviders().subscribe(data =>{
       console.log(data);
+      this.provs=data['content'];
+      this.loading = false;
       
     })
   }
+  delete(id:number, index:number){
 
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar el proveedor?',
+      text: "La información se perderá",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí'
+    }).then((result) => {
+      if (result.value) {
+        this.providerService.deleteProvider(id).subscribe(data => {
+          this.provs.splice(index,1)
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        })
+
+      }
+    })
+  }
 }
