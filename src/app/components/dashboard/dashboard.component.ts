@@ -23,8 +23,7 @@ export class DashboardComponent implements OnInit {
   constructor() { 
     this.rol=localStorage.getItem('rol');
     this.nombre=localStorage.getItem('nombre');
-
-    console.log(this.nombre)
+    //console.log(this.nombre)
     if(this.rol=='ROLE_ADMIN'){
       this.isAdmin=true;
     }else if(this.rol=='ROLE_EMPLEADO'){

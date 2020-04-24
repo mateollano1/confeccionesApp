@@ -12,18 +12,18 @@
             <form [formGroup]="maquinaForm">
                 <div class="row ">
                     <div class="col-md-4 mt-4">
-                        <label>Marca:</label>
-                        <input class="form-control " type="text" formControlName="marca" placeholder="Marca">
+                        <label>Marca:<span class="red">*</span></label>
+                        <input class="form-control " required  type="text" formControlName="marca" placeholder="Marca">
                     </div>
                     <div class="col-md-4 mt-4">
-                        <label>Modelo:</label>
-                        <input class="form-control" type="text" formControlName="modelo" placeholder="Modelo">
+                        <label>Modelo:<span class="red">*</span></label>
+                        <input class="form-control" type="text"  required formControlName="modelo" placeholder="Modelo">
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-md-4 mt-4">
-                        <label>Tipo de maquina:</label>
-                        <input class="form-control" formControlName="tipo" type="text" placeholder="Tipo">
+                        <label>Tipo de maquina:<span class="red">*</span></label>
+                        <input class="form-control" formControlName="tipo" required type="text" placeholder="Tipo">
                     </div>
                    
                     <div class="col-md-5 mt-4" *ngIf="activar" >

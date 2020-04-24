@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
 
     if (this.log.valid) {
       // console.log(this.log.value);
-
       this.loginService.login(this.log.value).subscribe(data => {
         // console.log(data);
         localStorage.setItem('access_token', data['access_token']);
         localStorage.setItem('rol', data['rol']);
         localStorage.setItem('nombre',data['nombre']+' '+data['apellido']);
-        this.nombre=localStorage.getItem('nombre')
+
+    
         console.log(data);
         this.route.navigateByUrl('/dashboard/inventario');
         this.progress=false;
