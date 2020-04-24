@@ -19,7 +19,7 @@ export class MachinesService {
   }
 
   crearMaquina(maquina:Maquina){
-    return this.http.post(`${url}/api/maquinas/`, maquina)
+    return this.http.post(`${url}/api/maquinas/`, maquina,{headers:this.headers})
   }
 
   obtenerMaquinas():Observable<Maquina>{
@@ -31,15 +31,15 @@ export class MachinesService {
   }
 
   borrarMaquina(id:number){
-    return this.http.delete(`${url}/api/maquinas/${id}`)
+    return this.http.delete(`${url}/api/maquinas/${id}`, {headers:this.headers})
   }
 
   obtenerMaquina(id:string):Observable<Maquina>{
-    return this.http.get(`${url}/api/maquinas/${id}`).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/maquinas/${id}`, {headers:this.headers}).pipe( map( (data: any) => {
       return data;
     }) );
   }
   editarMaquina(maquina: Maquina, id: string){
-    return this.http.put(`${url}/api/maquinas/${id}`,maquina)
+    return this.http.put(`${url}/api/maquinas/${id}`,maquina,{headers:this.headers})
   }
 }

@@ -9,7 +9,9 @@ import { PuntosVenta } from '../../../../models/puntoVenta';
 })
 export class PuntosVentaComponent implements OnInit {
 
-  constructor(private puntosVentaService: SellerPointService) { }
+  constructor(private puntosVentaService: SellerPointService) { 
+    
+  }
   puntos: PuntosVenta []
   loading: boolean = true
   ngOnInit(): void {

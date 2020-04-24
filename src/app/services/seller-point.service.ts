@@ -10,23 +10,27 @@ import { PuntosVenta } from '../models/puntoVenta';
   providedIn: 'root'
 })
 export class SellerPointService {
-
-  constructor(private http: HttpClient) { }
+  private headers;
+  constructor(private http: HttpClient) { 
+    this.headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+    });
+  }
   getPuntosVenta(): Observable<Provider[]>  {
-    return this.http.get(`${url}/api/puntos-de-ventas/`).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/puntos-de-ventas/`,{headers:this.headers}).pipe( map( (data: any) => {
       return data;
     }) );
   }
   getPuntoVenta(id: string)  {
-    return this.http.get(`${url}/api/puntos-de-ventas/${id}`)
+    return this.http.get(`${url}/api/puntos-de-ventas/${id}`,{headers:this.headers})
   }
   crearPuntoVenta(punto: PuntosVenta){
-    return this.http.post(`${url}/api/puntos-de-ventas/`,punto)
+    return this.http.post(`${url}/api/puntos-de-ventas/`,punto,{headers:this.headers})
   }
   deletePuntoVenta(id: number){
-    return this.http.delete(`${url}/api/puntos-de-ventas/${id}`)
+    return this.http.delete(`${url}/api/puntos-de-ventas/${id}`,{headers:this.headers})
   }
   editarPuntoVenta(punto: PuntosVenta, id: string){
-    return this.http.put(`${url}/api/puntos-de-ventas/${id}`,punto)
+    return this.http.put(`${url}/api/puntos-de-ventas/${id}`,punto,{headers:this.headers})
   }
 }

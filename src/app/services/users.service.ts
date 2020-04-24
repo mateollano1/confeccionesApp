@@ -21,39 +21,39 @@ export class UsersService {
     });
    }
   getRoles(): Observable<Rol[]>  {
-    return this.http.get(`${url}/api/roles/`).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/roles/`, {headers:this.headers}).pipe( map( (data: any) => {
       return data;
     }) );
   }
   getPuntosVenta(): Observable<PuntosVenta[]> {
-    return this.http.get(`${url}/api/puntos-de-ventas/`).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/puntos-de-ventas/`, {headers:this.headers}).pipe( map( (data: any) => {
       return data;
     }) );
   }
   getTipoContrato(): Observable<TipoContrato[]>{
-    return this.http.get(`${url}/api/contratos/`).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/contratos/`, {headers:this.headers}).pipe( map( (data: any) => {
       return data;
     }) );
   }
   getUsuarios(): Observable<empleado>{
-    return this.http.get(`${url}/api/usuarios/`, /* {headers:this.headers} */).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/usuarios/`, {headers:this.headers}).pipe( map( (data: any) => {
       return data;
     }) );
   }
   getUsuario(id:string): Observable<empleado>{
-    return this.http.get(`${url}/api/usuarios/${id}`).pipe( map( (data: any) => {
+    return this.http.get(`${url}/api/usuarios/${id}`, {headers:this.headers}).pipe( map( (data: any) => {
       return data;
     }) );
   }
   editarUsuario(usuario: empleado, id: string){
     
-    return this.http.put(`${url}/api/usuarios/${id}`,usuario)
+    return this.http.put(`${url}/api/usuarios/${id}`,usuario,{headers:this.headers})
   }
   crearUsuario(usuario: empleado){
     
-    return this.http.post(`${url}/api/usuarios/`,usuario)
+    return this.http.post(`${url}/api/usuarios/`,usuario,{headers:this.headers})
   }
   deleteUSer(id: number){
-    return this.http.delete(`${url}/api/usuarios/${id}`)
+    return this.http.delete(`${url}/api/usuarios/${id}`,{headers:this.headers})
   }
 }
