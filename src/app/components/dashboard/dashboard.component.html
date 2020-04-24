@@ -62,7 +62,7 @@
                         </span></button>
                     <mat-menu #menu="matMenu" class="primary">
                         <button mat-menu-item>Cuenta</button>
-                        <button mat-menu-item>Cerrar sesión</button>
+                        <button [routerLink]="['/login']" routerLinkActive="router-link-active" mat-menu-item>Cerrar sesión</button>
                     </mat-menu>
 
                 </div>

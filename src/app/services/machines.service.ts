@@ -4,16 +4,17 @@ import { Maquina } from '../models/machine';
 import { url } from '../config/url';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators'
-
+import * as CryptoJS from 'crypto-js';
+import { encPassword } from '../config/encPassword';
 @Injectable({
   providedIn: 'root'
 })
 export class MachinesService {
-
   private headers;
   constructor(private http:HttpClient) {
+    let token = CryptoJS.AES.decrypt(localStorage.getItem('access_token').trim(), encPassword.trim()).toString(CryptoJS.enc.Utf8);
     this.headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('access_token')}` ,
+      'Authorization': `Bearer ${token}` ,
     });
 
   }

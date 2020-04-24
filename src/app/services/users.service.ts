@@ -9,6 +9,9 @@ import { PuntosVenta } from '../models/puntoVenta';
 import { TipoContrato } from '../models/tipoContrato';
 import { empleado } from '../models/empleado';
 import { log } from 'util';
+import * as CryptoJS from 'crypto-js';
+import { encPassword } from '../config/encPassword';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +19,9 @@ export class UsersService {
 
   private headers;
   constructor(private http: HttpClient) {
+    let token = CryptoJS.AES.decrypt(localStorage.getItem('access_token').trim(), encPassword.trim()).toString(CryptoJS.enc.Utf8);
     this.headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('access_token')}` ,
+      'Authorization': `Bearer ${token}` ,
     });
    }
   getRoles(): Observable<Rol[]>  {

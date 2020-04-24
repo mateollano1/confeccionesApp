@@ -5,6 +5,8 @@ import { Provider } from '../models/provider';
 import { url } from '../config/url';
 import {map} from 'rxjs/operators'
 import { PuntosVenta } from '../models/puntoVenta';
+import * as CryptoJS from 'crypto-js';
+import { encPassword } from '../config/encPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,9 @@ import { PuntosVenta } from '../models/puntoVenta';
 export class SellerPointService {
   private headers;
   constructor(private http: HttpClient) { 
+    let token = CryptoJS.AES.decrypt(localStorage.getItem('access_token').trim(), encPassword.trim()).toString(CryptoJS.enc.Utf8);
     this.headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      'Authorization': `Bearer ${token}`,
     });
   }
   getPuntosVenta(): Observable<Provider[]>  {

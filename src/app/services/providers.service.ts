@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { Provider } from '../models/provider';
 import { url } from '../config/url';
 import {map} from 'rxjs/operators'
+import { encPassword } from '../config/encPassword';
+import * as CryptoJS from 'crypto-js';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +15,10 @@ export class ProvidersService {
 
   private headers;
   constructor(private http: HttpClient) {
+    let token = CryptoJS.AES.decrypt(localStorage.getItem('access_token').trim(), encPassword.trim()).toString(CryptoJS.enc.Utf8);
+
     this.headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('access_token')}` ,
+      'Authorization': `Bearer ${token}` ,
     });
    }
 
