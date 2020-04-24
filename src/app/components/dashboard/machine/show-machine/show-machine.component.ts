@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Maquina } from '../../../../models/machine';
 import { MachinesService } from '../../../../services/machines.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-machine',
@@ -13,7 +14,8 @@ export class ShowMachineComponent implements OnInit {
   maquinas:  Maquina [];
   loading: boolean = true
 
-  constructor(private machineService:MachinesService) { }
+  constructor(private machineService:MachinesService,
+              private router: Router) { }
 
 
   ngOnInit(): void {
@@ -26,6 +28,10 @@ export class ShowMachineComponent implements OnInit {
       console.log("Maquinas",this.maquinas)
       this.loading=false;
 
+    }, err=>{
+      if (err.status == 401) {
+        this.router.navigateByUrl('/login')
+      }
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,9 @@ export class DashboardComponent implements OnInit {
   isAdminP:boolean=false;
   nombre:string;
 
-  constructor() { 
+  constructor(
+    private router: Router
+  ) { 
     this.rol=localStorage.getItem('rol');
     this.nombre=localStorage.getItem('nombre');
     //console.log(this.nombre)
@@ -32,6 +35,8 @@ export class DashboardComponent implements OnInit {
       this.isAdminP=true;
     }else if(this.rol=='ROLE_RECURSO_HUMANO'){
       this.isRecursos=true;
+    }else{
+      router.navigateByUrl('/login')
     }
   }
 

@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.progress=false;
     localStorage.removeItem('access_token');
+    localStorage.removeItem('rol');
+    localStorage.removeItem('nombre');
     this.log = new FormGroup({
       'username': new FormControl('', Validators.required),
       'password': new FormControl('', Validators.required),
