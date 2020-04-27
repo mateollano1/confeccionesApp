@@ -18,8 +18,10 @@ export class CreateMachineComponent implements OnInit {
   header:string="";
   id: string;
   fecha;
+  icon:string;
   activar:boolean=false;
   machineMessage:string="";
+  errorMessage=""
   constructor(private machineService:MachinesService,private router: Router, private route: ActivatedRoute) { 
     this.id = this.route.snapshot.paramMap.get("id")
     
@@ -98,7 +100,13 @@ export class CreateMachineComponent implements OnInit {
             }
           });
         }
+      }else{
+        this.errorMessage = "Por favor diligencie todos los datos requeridos."
+
+        //this.showErrorMessage();
       }
+
+
   }
 
   showSuccessMessage(mensaje:string) {
@@ -115,4 +123,19 @@ export class CreateMachineComponent implements OnInit {
       }
     })
   }
+
+   showErrorMessage() {
+    let timerInterval
+    Swal.fire({
+      title: 'Información',
+      html: 'Por favor ingrese todos los campos',
+      icon: 'warning',
+      timerProgressBar: true,
+    }).then((result) => {
+      this.router.navigateByUrl('dashboard/maquinas')
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
+  }
+
 }

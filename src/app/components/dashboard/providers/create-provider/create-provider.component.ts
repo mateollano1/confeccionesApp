@@ -18,6 +18,7 @@ export class CreateProviderComponent implements OnInit {
   provider:Provider;
   proveedorForm:FormGroup;
   providerMessage:string;
+  errorMessage=""
   constructor(private providersService: ProvidersService,
     private route: ActivatedRoute,
     private router: Router) { 
@@ -98,6 +99,9 @@ export class CreateProviderComponent implements OnInit {
         });
       }
     } else {
+      this.errorMessage = "Por favor diligencie todos los datos requeridos."
+
+      //this.showErrorMessage();
      // console.log("Ingrese todo los campos");
     }
     
@@ -113,6 +117,20 @@ export class CreateProviderComponent implements OnInit {
     }).then((result) => {
       /* Read more about handling dismissals below */
       this.router.navigateByUrl('dashboard/proveedores')
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
+  }
+  
+  showErrorMessage() {
+    let timerInterval
+    Swal.fire({
+      title: 'Información',
+      html: 'Por favor ingrese todos los campos',
+      icon: 'warning',
+      timerProgressBar: true,
+    }).then((result) => {
+      this.router.navigateByUrl('dashboard/maquinas')
       if (result.dismiss === Swal.DismissReason.timer) {
       }
     })

@@ -29,6 +29,7 @@ export class CreateUserComponent implements OnInit {
   idPuntoVenta: string = ""
   loading: boolean = true
   userMessage: string = ""
+  errorMessage=""
   constructor(private usersService: UsersService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -196,6 +197,10 @@ export class CreateUserComponent implements OnInit {
         //console.log("Contraseñas incorrectas");
       }
     } else {
+      this.errorMessage = "Por favor diligencie todos los datos requeridos."
+      // this.showErrorMessage();
+     
+      //this.showErrorMessage();
       //console.log("Ingrese todo los campos");
     }
   }
@@ -211,6 +216,20 @@ export class CreateUserComponent implements OnInit {
     }).then((result) => {
       /* Read more about handling dismissals below */
       this.router.navigateByUrl('dashboard/trabajadores')
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
+  }
+
+  showErrorMessage() {
+    let timerInterval
+    Swal.fire({
+      title: 'Información',
+      html: 'Por favor ingrese todos los campos',
+      icon: 'warning',
+      timerProgressBar: true,
+    }).then((result) => {
+      this.router.navigateByUrl('dashboard/maquinas')
       if (result.dismiss === Swal.DismissReason.timer) {
       }
     })
