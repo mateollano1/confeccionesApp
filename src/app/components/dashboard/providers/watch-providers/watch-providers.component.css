@@ -1,0 +1,28 @@
+/* Si el tamaño de la pantalla es de 601px o más, ajusta el tamaño de la fuente de <div> a 80px */
+
+@media only screen and (min-width: 1501px) {
+    .card-columns {
+        column-count: 4;
+    }
+}
+
+
+/* Si el tamaño de la pantalla es de 600px o menos, ajusta el tamaño de la fuente de <div> a 30px */
+
+@media only screen and (max-width: 1500px) and (min-width: 1200) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 950) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media only screen and (max-width: 949px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
