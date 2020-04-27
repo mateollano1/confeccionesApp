@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SellerPointService } from '../../../../services/seller-point.service';
 import { PuntosVenta } from '../../../../models/puntoVenta';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-puntos-venta',
@@ -26,13 +27,29 @@ export class PuntosVentaComponent implements OnInit {
       
     })
   }
-  delete(i: number){
-    console.log(i);
-    this.puntosVentaService.deletePuntoVenta(i).subscribe(data =>{
-      
-      // console.log(data);
-      
-    })
+  delete(i: number, index:number){
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar el punto de venta?',
+      text: "La información se perderá",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí'
+    }).then((result) => {
+      if (result.value) {
+        this.puntosVentaService.deletePuntoVenta(i).subscribe(data => {
+          this.puntos.splice(index,1)
+          Swal.fire(
+            'Eliminado correctamente',
+            '',
+            'success'
+          )
+          console.log(data);
+        })
+
+      }
+    });
   }
 
 }
