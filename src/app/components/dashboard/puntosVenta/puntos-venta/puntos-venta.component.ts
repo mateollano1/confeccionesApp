@@ -45,7 +45,7 @@ export class PuntosVentaComponent implements OnInit {
             '',
             'success'
           )
-          console.log(data);
+          //console.log(data);
         })
 
       }
