@@ -30,6 +30,7 @@ export class CreateUserComponent implements OnInit {
   loading: boolean = true
   userMessage: string = ""
   errorMessage=""
+  create: boolean = true
   constructor(private usersService: UsersService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -45,6 +46,7 @@ export class CreateUserComponent implements OnInit {
 
     if (id) {
       this.header = "Editar Empleado"
+      this.create = false
       this.getUser()
 
     } else {

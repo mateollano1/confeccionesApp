@@ -44,19 +44,7 @@
                           
                         </select>
                     </div>
-                    <div class="col-md-5 mt-4">
-                        <label>Contraseña:</label>
 
-                        <input class="form-control" type="password" autocomplete="new-password" formControlName="contrasenia" placeholder="contraseña">
-                    </div>
-
-
-                </div>
-                <div class="row ">
-                    <div class="col-md-5 mt-4">
-                        <label>Repetir contraseña:</label>
-                        <input class="form-control" type="password" autocomplete="new-password" formControlName="contraseniaR" placeholder="Repetir contraseña">
-                    </div>
                     <div class="col-md-5 mt-4">
                         <label>Tipo de contrato:</label>
                         <select formControlName="idContrato" (change)="saveContrato($event)" class="form-control">
@@ -65,6 +53,20 @@
                           
                         </select>
                     </div>
+
+
+                </div>
+                <div class="row ">
+                    <div class="col-md-5 mt-4" *ngIf="create">
+                        <label>Contraseña:</label>
+
+                        <input class="form-control" type="password" autocomplete="new-password" formControlName="contrasenia" placeholder="contraseña">
+                    </div>
+                    <div class="col-md-5 mt-4" *ngIf="create">
+                        <label>Repetir contraseña:</label>
+                        <input class="form-control" type="password" autocomplete="new-password" formControlName="contraseniaR" placeholder="Repetir contraseña">
+                    </div>
+
 
                 </div>
                 <div class="row ">
