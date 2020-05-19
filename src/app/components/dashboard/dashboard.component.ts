@@ -72,8 +72,6 @@ export class DashboardComponent implements OnInit {
       default:
         break;
     }
-
-
   }
   clearColor() {
     this.inventarioColor = "#66615b"
