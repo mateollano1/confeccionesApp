@@ -51,13 +51,19 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.log.value).subscribe(data => {
         //console.log(data);
 
-
+        console.log(data);
         let nombreCompleto = data['nombre'] + ' ' + data['apellido']
+        let idPV = data['puntoventa_id'].toString()
+        let idUser = data['id'].toString()
+        let puntoVenta =  CryptoJS.AES.encrypt(idPV.trim(), this.encPassword.trim()).toString();
         let token = CryptoJS.AES.encrypt(data['access_token'].trim(), this.encPassword.trim()).toString();
         let rol = CryptoJS.AES.encrypt(data['rol'].trim(), this.encPassword.trim()).toString();
+        let idU = CryptoJS.AES.encrypt(idUser.trim(), this.encPassword.trim()).toString();
         let nombre = CryptoJS.AES.encrypt(nombreCompleto.trim(), this.encPassword.trim()).toString();
         localStorage.setItem('access_token', token);
+        localStorage.setItem('punto_venta', puntoVenta);
         localStorage.setItem('rol', rol);
+        localStorage.setItem('id', idU);
         localStorage.setItem('nombre', nombre);
 
 

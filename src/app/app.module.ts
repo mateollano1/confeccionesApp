@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from "@angular/common";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +33,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PuntosVentaComponent } from './components/dashboard/puntosVenta/puntos-venta/puntos-venta.component';
 import { CreatePuntoVentaComponent } from './components/dashboard/puntosVenta/create-punto-venta/create-punto-venta.component';
+import { BuyItemsComponent } from './components/dashboard/inventory/buyItems/buy-items/buy-items.component';
+
 
 @NgModule({
   declarations: [
@@ -49,9 +51,11 @@ import { CreatePuntoVentaComponent } from './components/dashboard/puntosVenta/cr
     CreateProviderComponent,
     PuntosVentaComponent,
     CreatePuntoVentaComponent,
+    BuyItemsComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,

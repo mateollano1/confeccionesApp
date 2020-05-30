@@ -1,0 +1,79 @@
+<div class="container mt-5" *ngIf="loading" style="text-align: center;">
+    <span class="material-icons spin">
+        refresh
+        </span>
+</div>
+<div class="card m-4">
+
+    <div class="card-body">
+        <div class="row mb-lg-5">
+            <div class="col-md-8 col-sm-6 col-xs-6">
+                <h5 class="montserrat mt-3" style="font-size: 30px;">Abastecimiento de maquinaria</h5>
+            </div>
+
+        </div>
+
+
+        <div style="margin: 0 auto; float: none;">
+            <div class="col-md-12 " style="text-align: center; display: flex; flex-direction: row;flex-wrap: wrap; ">
+                <div *ngFor="let item of maquinas; let i = index" class="card shadow mr-4 mt-2 " style="width: 18rem; ">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-2" style="text-align: center; ">
+
+                                <span style="font-size: 42px; color: #66615b;" class="material-icons sidenavIcon">
+                                    memory 
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col md 12 manrope" style="text-align: left;">
+                                <span> <strong>Marca: </strong>{{item['marca']}} </span><br>
+                                <span><strong>Modelo: </strong> {{item['modelo']}}</span><br>
+                                <span><strong>Tipo de maquina: </strong>  </span>
+                                <span>{{item['tipo']}} </span><br>
+                                <span> <strong>Precio: </strong>  <input type="number" value="50000" style="text-align: center;" class="form-control"  placeholder="1" #price> </span>
+                                <span><strong>Proveedor:</strong>  </span><br>
+                                <select class="form-control" (change)="saveProvider($event)">
+                                    <option disabled selected value> -- Seleccione -- </option>
+                                    <option value="{{i}}" *ngFor="let item of proveedores; let i = index">{{item['nombre']}}</option>
+                                  
+                                </select>
+
+                                <div class="input-group">
+                                    <div class="class col-md-8">
+
+                                    </div>
+
+                                </div>
+                                <span> <strong>Cantidad: </strong>  </span><br>
+
+                                <div class="col-md-12 mt-3" style="text-align: center;">
+                                    <div class="input-group col-md-12">
+                                        <div class="input-group-prepend">
+                                            <a class="btn" (click)="cont.value = sub(cont)" style="background-color: #66615b;">-</a>
+                                        </div>
+                                        <input type="number" value="1" style="text-align: center;" class="form-control" id="inlineFormInputGroupUsername" placeholder="1" #cont>
+                                        <div class="input-group-prepend">
+                                            <a class="btn" (click)="cont.value = add(cont)" style="background-color: #F58F0D;">+</a>
+                                        </div>
+                                    </div>
+                                    <button class="btn mt-4" (click)="save(i, cont, price)" style="background-color: #F58F0D;">
+                                        Comprar
+                                    </button>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <!-- <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator> -->
+        </div>
+    </div>
+    {{compra}}
+</div>

@@ -16,7 +16,7 @@ export class MachinesService {
     this.headers = new HttpHeaders({
       'Authorization': `Bearer ${token}` ,
     });
-
+ 
   }
 
   crearMaquina(maquina:Maquina){
