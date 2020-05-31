@@ -24,7 +24,21 @@ export class InventoryService {
       return data;
     }) );
   }
+  obtenerCompras(id){
+    return this.http.get(`${url}/api/puntos-de-ventas/${id}/compras/`,{headers:this.headers}).pipe( map( (data: any) => {
+      return data;
+    }) );
+  }
+  obtenerVentas(id){
+    return this.http.get(`${url}/api/puntos-de-ventas/${id}/ventas/`,{headers:this.headers}).pipe( map( (data: any) => {
+      return data;
+    }) );
+  }
   comprarMaquina(compra:any){
     return this.http.post(`${url}/api/compras/`, compra,{headers:this.headers})
+  }
+
+  venderMaquina(venta:any){
+    return this.http.post(`${url}/api/ventas/`, venta,{headers:this.headers})
   }
 }

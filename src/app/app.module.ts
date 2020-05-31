@@ -34,6 +34,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PuntosVentaComponent } from './components/dashboard/puntosVenta/puntos-venta/puntos-venta.component';
 import { CreatePuntoVentaComponent } from './components/dashboard/puntosVenta/create-punto-venta/create-punto-venta.component';
 import { BuyItemsComponent } from './components/dashboard/inventory/buyItems/buy-items/buy-items.component';
+import { TransactionsComponent } from './components/dashboard/inventory/transactions/transactions.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { BuyItemsComponent } from './components/dashboard/inventory/buyItems/buy
     PuntosVentaComponent,
     CreatePuntoVentaComponent,
     BuyItemsComponent,
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,

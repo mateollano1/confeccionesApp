@@ -56,7 +56,11 @@ export class BuyItemsComponent implements OnInit {
     return parseInt(cont.value) + 1
   }
   sub(cont: any) {
-    return parseInt(cont.value) - 1
+    let val = parseInt(cont.value) - 1
+    if (val<0) {
+      return 0 
+    }
+    return val
   }
   save(i, cont: any, price: any) {
     let numeroMaquinas = cont.value

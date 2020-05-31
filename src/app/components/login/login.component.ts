@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('access_token');
     localStorage.removeItem('rol');
     localStorage.removeItem('nombre');
+    localStorage.removeItem('id');
+    localStorage.removeItem('punto_venta');
     this.log = new FormGroup({
       'username': new FormControl('', Validators.required),
       'password': new FormControl('', Validators.required),

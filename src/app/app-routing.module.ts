@@ -12,6 +12,7 @@ import { CreateUserComponent } from './components/dashboard/users/create-user/cr
 import { PuntosVentaComponent } from './components/dashboard/puntosVenta/puntos-venta/puntos-venta.component';
 import { CreatePuntoVentaComponent } from './components/dashboard/puntosVenta/create-punto-venta/create-punto-venta.component';
 import { BuyItemsComponent } from './components/dashboard/inventory/buyItems/buy-items/buy-items.component';
+import { TransactionsComponent } from './components/dashboard/inventory/transactions/transactions.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'crear/puntos-de-venta', component: CreatePuntoVentaComponent },
       { path: 'editar/puntos-de-venta/:id', component: CreatePuntoVentaComponent },
       { path: 'compras', component: BuyItemsComponent },
+      { path: 'transacciones', component: TransactionsComponent },
 
 
     ]

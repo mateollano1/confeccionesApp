@@ -1,10 +1,58 @@
-<div>
-    <!-- Aqui van lositems del inventario -->
-</div>
+<div class="card m-4">
+    <div class="card-body">
+        <div class="row mb-lg-5">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <h5 class="montserrat mt-3" style="font-size: 30px;">Listado de Máquinas</h5>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right;">
+                <a class="btn btn mr-2 mt-3" [routerLink]="['/dashboard/compras']" routerLinkActive="router-link-active" style="background-color: #F58F0D;">Abastecer inventario <span  class="material-icons" >
+                    assignment
+                    </span></a>
+                <a class="btn btn mt-3" [routerLink]="['/dashboard/transacciones']" routerLinkActive="router-link-active" style="background-color: #F58F0D;">Transacciones<span  class="material-icons" >
+                        assignment
+                        </span></a>
+            </div>
+        </div>
+    </div>
+    <div class="col" style="text-align: center;">
 
-<div>
-    <a class="btn btn-primary" [routerLink]="['/dashboard/compras']" routerLinkActive="router-link-active">Abastecer inventario</a>
-</div>
-<div>
-    <button class="btn btn-primary">Ventas</button>
+        <table class="table table-responsive table-hover m-2">
+            <thead>
+                <tr style="text-align: center;">
+                    <th scope="col" style="width: 2em;">#</th>
+                    <th scope="col" style="width: 4em;">Marca</th>
+                    <th scope="col" style="width: 4em;">Modelo</th>
+                    <th scope="col" style="width: 4em;">Estado</th>
+                    <th scope="col" style="width: 4em;">Stock</th>
+                    <th scope="col" style="width: 10em;">Precio Unitario</th>
+                    <th scope="col" style="width: 10em;">Cantidad</th>
+                    <th scope="col">Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+                <tr *ngFor="let item of maquinas; let i = index">
+                    <th scope="row" style="padding: 2em;width: 2em;">{{i+1}} </th>
+                    <td style="padding: 2em;width: 4em;">{{item['marca']}}</td>
+                    <td style="padding: 2em;width: 4em;">{{item['modelo']}}</td>
+                    <td style="padding: 2em;width: 4em;">{{item['tipo']}}</td>
+                    <td style="padding: 2em;width: 4em;">{{item['cantidad']}}</td>
+                    <td style="padding: 2em;width: 10em;">
+                        <input type="number" value="50000" style="text-align: center;" class="form-control" placeholder="1" #price>
+                    </td>
+                    <td style="padding: 2em;"> <input type="number" value="1" style="text-align: center;" class="form-control" placeholder="1" #cant></td>
+
+
+                    <td style="padding: 2em;"><button class="btn btn-primary" (click)="venderMaquina(i,price,cant)"> Vender </button></td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-3">
+        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+    </div>
 </div>

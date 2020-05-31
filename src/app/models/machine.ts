@@ -5,5 +5,6 @@ export class Maquina{
     modelo:string;
     fechaCreacion:Date;
     tipo:string;
+    cantidad: number;
     
 }
