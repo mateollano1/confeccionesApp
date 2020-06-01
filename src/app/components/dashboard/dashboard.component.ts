@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
     this.rol = CryptoJS.AES.decrypt(localStorage.getItem('rol').trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
 
     this.nombre = CryptoJS.AES.decrypt(localStorage.getItem('nombre').trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
-    //console.log(this.nombre)
+
     if (this.rol == 'ROLE_ADMIN') {
       this.isAdmin = true;
     } else if (this.rol == 'ROLE_EMPLEADO') {

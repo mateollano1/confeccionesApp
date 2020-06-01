@@ -19,10 +19,10 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.inventoryService.obtenerCompras(this.idPuntoVenta).subscribe(data =>{
-      console.log(data);
+     
       this.transacciones = data
       this.inventoryService.obtenerVentas(this.idPuntoVenta).subscribe(data=>{
-        console.log(data);
+        
         this.ventas = data
       })
     })

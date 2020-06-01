@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user';
 import { empleado } from '../../../../../models/empleado';
 import { ProvidersService } from '../../../../../services/providers.service';
 import { log } from 'util';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-buy-items',
@@ -43,7 +43,7 @@ export class BuyItemsComponent implements OnInit {
   getMaquinas() {
     this.machineService.obtenerMaquinas().subscribe(data => {
       this.maquinas = data['content'];
-      console.log("Maquinas", this.maquinas)
+      
       this.loading = false;
 
     }, err => {
@@ -79,16 +79,46 @@ export class BuyItemsComponent implements OnInit {
         "idProvedor": this.proveedores[this.provider],
         "total": ""
       }
-      console.log(JSON.stringify(this.compra));
+      
       
       this.inventoryService.comprarMaquina(this.compra).subscribe(data =>{
-        console.log(data);
+        this.showSuccessMessage()
+        
       })
     })
     // this.inventoryService.comprarMaquina()
+  }else{
+    this.showErrorMessage()
   }
 }
   saveProvider(event: any) {
     this.provider = event.target.value
+  }
+  showSuccessMessage() {
+    let timerInterval
+    Swal.fire({
+      title: "¡Compra exitosa!",
+      html: "Máquina comprada exitosamente",
+      icon: 'success',
+      timer: 3000,
+      timerProgressBar: true,
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
+  }
+
+  showErrorMessage() {
+    let timerInterval
+    Swal.fire({
+      title: "¡Campos vacios!",
+      html: "Por favor diligencie todos los datos requeridos",
+      icon: 'warning',
+      timer: 3000,
+      timerProgressBar: true,
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
   }
 }

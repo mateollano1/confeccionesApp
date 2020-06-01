@@ -25,7 +25,7 @@ export class ShowMachineComponent implements OnInit {
   getMaquinas(){
     this.machineService.obtenerMaquinas().subscribe(data =>{
       this.maquinas=data['content'];
-      //console.log("Maquinas",this.maquinas)
+
       this.loading=false;
 
     }, err=>{
@@ -57,8 +57,7 @@ export class ShowMachineComponent implements OnInit {
 
       }
     });
-   // console.log("index",index)
-    //console.log("id",id);
+   
   }
   
 }

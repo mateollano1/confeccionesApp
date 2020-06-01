@@ -40,7 +40,7 @@ export class CreatePuntoVentaComponent implements OnInit {
   getPuntoVenta() {
     this.puntoService.getPuntoVenta(this.id).subscribe(data => {
       this.punto = data
-      // console.log(this.punto);
+      
       this.loadForm()
       this.loading = false
     })
@@ -62,7 +62,7 @@ export class CreatePuntoVentaComponent implements OnInit {
     })
   }
   save() {
-    // console.log(this.puntos.value);
+   
     if (this.puntos.valid) {
 
       if (this.id) {

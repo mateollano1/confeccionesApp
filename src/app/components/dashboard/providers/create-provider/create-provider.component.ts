@@ -54,7 +54,7 @@ export class CreateProviderComponent implements OnInit {
   }
   getProvider() {
     this.providersService.getProveedor(this.id).subscribe(data => {
-     // console.log(data);
+    
       this.provider = data;
       this.createEditForm()
     }, err=>{
@@ -75,11 +75,11 @@ export class CreateProviderComponent implements OnInit {
 
   
   save(){
-    //console.log(this,this.proveedorForm.value)
+    
     if (this.proveedorForm.valid){
       if (this.id) {
         this.providersService.editarProveedor(this.proveedorForm.value, this.id).subscribe(data => {
-          //console.log(data);
+          
           this.providerMessage = "El proveedor ha sido actualizado correctamente"
           this.showSuccessMessage("¡Actualización exitosa!")
         }, err=>{
@@ -89,7 +89,7 @@ export class CreateProviderComponent implements OnInit {
         });
       } else {
         this.providersService.crearProvider(this.proveedorForm.value).subscribe(data => {
-          //console.log(data);
+      
           this.providerMessage = "El proveedor ha sido creado correctamente"
           this.showSuccessMessage("¡Creación exitosa!")
         }, err=>{
@@ -101,8 +101,7 @@ export class CreateProviderComponent implements OnInit {
     } else {
       this.errorMessage = "Por favor diligencie todos los datos requeridos."
 
-      //this.showErrorMessage();
-     // console.log("Ingrese todo los campos");
+     
     }
     
   }
@@ -115,7 +114,7 @@ export class CreateProviderComponent implements OnInit {
       timer: 1500,
       timerProgressBar: true,
     }).then((result) => {
-      /* Read more about handling dismissals below */
+     
       this.router.navigateByUrl('dashboard/proveedores')
       if (result.dismiss === Swal.DismissReason.timer) {
       }

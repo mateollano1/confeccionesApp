@@ -49,11 +49,9 @@ export class LoginComponent implements OnInit {
     this.progress = true;
     this.isDisabled = true;
     if (this.log.valid) {
-      // console.log(this.log.value);
+     
       this.loginService.login(this.log.value).subscribe(data => {
-        //console.log(data);
-
-        console.log(data);
+       
         let nombreCompleto = data['nombre'] + ' ' + data['apellido']
         let idPV = data['puntoventa_id'].toString()
         let idUser = data['id'].toString()
@@ -69,7 +67,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('nombre', nombre);
 
 
-        //console.log(data);
+       
         this.progress = false;
         if (data['rol'] == "ROLE_EMPLEADO" || data['rol'] == "ROLE_ADMIN_PUNTO" ) {
           this.route.navigateByUrl('/dashboard/inventario');
@@ -83,22 +81,22 @@ export class LoginComponent implements OnInit {
         if (err.status == 400 || err.status == 401) {
           this.progress = false;
           this.isDisabled = false;
-          // console.log("Usuario o contrasela incorrectos");
+         
           this.penSnackBar()
         } else {
-          //console.log("error en el servidor");
+          
           this.progress = false;
         }
-        //console.log(err.status);
+     
       })
-      //llama servicio
+     
     } else {
       this.progress = true;
       this.isDisabled = false;
       this.penSnackBarValidInputs()
 
     }
-    // console.log(this.log);
+    
 
   }
   penSnackBar() {

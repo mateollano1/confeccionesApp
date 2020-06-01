@@ -22,7 +22,7 @@ export class PuntosVentaComponent implements OnInit {
   getPuntosVenta(){
     this.puntosVentaService.getPuntosVenta().subscribe(data =>{
       this.puntos = data['content']
-      // console.log(this.puntos);
+     
       this.loading = false
       
     })
@@ -45,7 +45,7 @@ export class PuntosVentaComponent implements OnInit {
             '',
             'success'
           )
-          //console.log(data);
+          
         })
 
       }

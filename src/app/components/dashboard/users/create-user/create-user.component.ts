@@ -57,7 +57,7 @@ export class CreateUserComponent implements OnInit {
   }
   getUser() {
     this.usersService.getUsuario(this.id).subscribe(data => {
-      //console.log(data);
+
       this.empleado = data;
       this.createEditForm()
     }, err=>{
@@ -127,7 +127,7 @@ export class CreateUserComponent implements OnInit {
   getRoles() {
     this.usersService.getRoles().subscribe((data) => {
       this.roles = data
-      //console.log(data);
+   
       this.getPuntosVenta()
     }, err=>{
       if (err.status == 401) {
@@ -165,18 +165,18 @@ export class CreateUserComponent implements OnInit {
     });
   }
   save() {
-    //console.log(this.usuario.value);
+    
 
     if (this.usuario.valid /* && this.idRol !== "" && this.idContrato !== "" && this.idPuntoVenta !== "" */) {
       this.usuario.value['rol'] = this.roles[this.idRol]
       this.usuario.value['contrato'] = this.tipo[this.idContrato]
       this.usuario.value['puntoVenta'] = this.tipo[this.idPuntoVenta]
-      //console.log(this.usuario.value);
+     
 
       if (this.usuario.value['contrasenia'] == this.usuario.value['contraseniaR']) {
         if (this.id) {
           this.usersService.editarUsuario(this.usuario.value, this.id).subscribe(data => {
-            //console.log(data);
+       
             this.userMessage = "El Usuario ha sido Actualizado correctamente"
             this.showSuccessMessage("¡Actialización exitosa!")
           }, err=>{
@@ -186,7 +186,7 @@ export class CreateUserComponent implements OnInit {
           });
         } else {
           this.usersService.crearUsuario(this.usuario.value).subscribe(data => {
-            //console.log(data);
+           
             this.userMessage = "El Usuario ha sido creado correctamente"
             this.showSuccessMessage("¡Creación exitosa!")
           }, err=>{
@@ -196,14 +196,13 @@ export class CreateUserComponent implements OnInit {
           });
         }
       } else {
-        //console.log("Contraseñas incorrectas");
+        
       }
     } else {
       this.errorMessage = "Por favor diligencie todos los datos requeridos."
-      // this.showErrorMessage();
+  
      
-      //this.showErrorMessage();
-      //console.log("Ingrese todo los campos");
+    
     }
   }
 
@@ -216,7 +215,7 @@ export class CreateUserComponent implements OnInit {
       timer: 1500,
       timerProgressBar: true,
     }).then((result) => {
-      /* Read more about handling dismissals below */
+   
       this.router.navigateByUrl('dashboard/trabajadores')
       if (result.dismiss === Swal.DismissReason.timer) {
       }

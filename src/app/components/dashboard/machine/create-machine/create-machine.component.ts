@@ -36,7 +36,7 @@ export class CreateMachineComponent implements OnInit {
       this.maquina=data;
       this.createEditForm();
       this.maquinaForm.controls['fechaCreacion'].disable();
-      //console.log("Maquina id",this.maquina);
+   
       }, err=>{
       if (err.status == 401) {
         this.router.navigateByUrl('/login')
@@ -80,7 +80,7 @@ export class CreateMachineComponent implements OnInit {
     if (this.maquinaForm.valid){
       if (this.id) {
         this.machineService.editarMaquina(this.maquinaForm.value,this.id).subscribe(data =>{
-          //console.log(data);
+    
             this.machineMessage = "La maquina ha sido actualizada correctamente"
             this.showSuccessMessage("¡Actualización exitosa!")
           }, err=>{
@@ -88,10 +88,10 @@ export class CreateMachineComponent implements OnInit {
               this.router.navigateByUrl('/login')
             }
           });
-         //console.log("Editar")
+         
         } else {
           this.machineService.crearMaquina(this.maquinaForm.value).subscribe(data => {
-            //console.log(data);
+           
             this.machineMessage = "Maquina creada exitosamente"
             this.showSuccessMessage("¡Creación exitosa!");
           }, err=>{
@@ -103,7 +103,7 @@ export class CreateMachineComponent implements OnInit {
       }else{
         this.errorMessage = "Por favor diligencie todos los datos requeridos."
 
-        //this.showErrorMessage();
+        
       }
 
 

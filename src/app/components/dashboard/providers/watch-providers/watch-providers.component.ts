@@ -24,7 +24,7 @@ export class WatchProvidersComponent implements OnInit {
 
   getProviders(){
     this.providerService.getProviders().subscribe(data =>{
-      //console.log(data);
+    
       this.provs=data['content'];
       this.loading = false; 
     }, err=>{

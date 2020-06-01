@@ -20,7 +20,7 @@ export class WatchUsersComponent implements OnInit {
   }
   getEmpleados() {
     this.usersService.getUsuarios().subscribe(data => {
-      //console.log(data['content']);
+     
       this.usuario = data['content']
       this.loading = false
     }, err=>{
@@ -30,7 +30,7 @@ export class WatchUsersComponent implements OnInit {
     });
   }
   delete(id: number, index: number) {
-    //console.log(id);
+
 
     Swal.fire({
       title: '¿Está seguro que desea eliminar el usuario?',

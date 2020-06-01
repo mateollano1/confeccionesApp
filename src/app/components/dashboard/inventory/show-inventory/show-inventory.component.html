@@ -5,10 +5,10 @@
                 <h5 class="montserrat mt-3" style="font-size: 30px;">Listado de Máquinas</h5>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right;">
-                <a class="btn btn mr-2 mt-3" [routerLink]="['/dashboard/compras']" routerLinkActive="router-link-active" style="background-color: #F58F0D;">Abastecer inventario <span  class="material-icons" >
+                <a class="btn btn mr-2 mt-3" [routerLink]="['/dashboard/compras']" routerLinkActive="router-link-active" *ngIf="!isEmpleado"  style="background-color: #F58F0D;">Abastecer inventario <span  class="material-icons" >
                     assignment
                     </span></a>
-                <a class="btn btn mt-3" [routerLink]="['/dashboard/transacciones']" routerLinkActive="router-link-active" style="background-color: #F58F0D;">Transacciones<span  class="material-icons" >
+                <a class="btn btn mt-3" [routerLink]="['/dashboard/transacciones']" routerLinkActive="router-link-active" style="background-color: #F58F0D;" *ngIf="!isEmpleado">Transacciones<span  class="material-icons" >
                         assignment
                         </span></a>
             </div>
@@ -17,8 +17,8 @@
     <div class="col" style="text-align: center;">
 
         <table class="table table-responsive table-hover m-2">
-            <thead>
-                <tr style="text-align: center;">
+            <thead >
+                <tr style="text-align: center;" >
                     <th scope="col" style="width: 2em;">#</th>
                     <th scope="col" style="width: 4em;">Marca</th>
                     <th scope="col" style="width: 4em;">Modelo</th>
