@@ -178,7 +178,7 @@ export class CreateUserComponent implements OnInit {
           this.usersService.editarUsuario(this.usuario.value, this.id).subscribe(data => {
        
             this.userMessage = "El Usuario ha sido Actualizado correctamente"
-            this.showSuccessMessage("¡Actialización exitosa!")
+            this.showSuccessMessage("¡Actualización exitosa!")
           }, err=>{
             if (err.status == 401) {
               this.router.navigateByUrl('/login')
